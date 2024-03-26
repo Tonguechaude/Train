@@ -4,6 +4,7 @@ import fr.umontpellier.iut.trains.Joueur;
 
 public abstract class Carte {
     private final String nom;
+    private final int prix;
 
     /**
      * Constructeur simple
@@ -19,6 +20,12 @@ public abstract class Carte {
      */
     public Carte(String nom) {
         this.nom = nom;
+        prix = 0;
+    }
+
+    public Carte(String nom, int prix) {
+        this.nom = nom;
+        this.prix = prix;
     }
 
     public String getNom() {

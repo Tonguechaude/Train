@@ -145,8 +145,18 @@ public class Joueur {
      *         défausse)
      */
     public List<Carte> piocher(int n) {
-        // À FAIRE
-        return null;
+        List<Carte> list = new ArrayList<>();
+        if(pioche.size() <= n) {
+            list.addAll(pioche);
+            pioche.clear();
+            pioche.addAll(defausse);
+            pioche.melanger();
+        } else {
+            for(int i = 1 ; i <= n ; i++) {
+                list.add(pioche.remove(0));
+            }
+        }
+        return list;
     }
 
     /**
