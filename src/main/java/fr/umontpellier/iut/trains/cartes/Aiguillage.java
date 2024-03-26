@@ -4,7 +4,7 @@ import fr.umontpellier.iut.trains.Joueur;
 
 public class Aiguillage extends Carte {
     public Aiguillage() {
-        super("Aiguillage",5);
+        super("Aiguillage");
     }
     // gérer le prix !!
     @Override

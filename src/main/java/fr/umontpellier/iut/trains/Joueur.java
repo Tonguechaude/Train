@@ -155,13 +155,19 @@ public class Joueur {
     public List<Carte> piocher(int n) {
         List<Carte> list = new ArrayList<>();
         if(pioche.size() <= n) {
+            int size = pioche.size();
             list.addAll(pioche);
             pioche.clear();
-            pioche.addAll(defausse);
-            pioche.melanger();
+            if(defausse.isEmpty()) {
+                return list;
+            } else {
+                for(int i = 0 ; i < n-size; i++) {
+                    list.add(piocher());
+                }
+            }
         } else {
             for(int i = 1 ; i <= n ; i++) {
-                list.add(pioche.remove(0));
+                list.add(piocher());
             }
         }
         return list;
