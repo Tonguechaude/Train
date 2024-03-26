@@ -4,15 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+import fr.umontpellier.iut.trains.cartes.*;
 import org.junit.jupiter.api.Test;
-
-import fr.umontpellier.iut.trains.cartes.Carte;
-import fr.umontpellier.iut.trains.cartes.Ferraille;
-import fr.umontpellier.iut.trains.cartes.Gare;
-import fr.umontpellier.iut.trains.cartes.PoseDeRails;
-import fr.umontpellier.iut.trains.cartes.TrainDirect;
-import fr.umontpellier.iut.trains.cartes.TrainExpress;
-import fr.umontpellier.iut.trains.cartes.TrainOmnibus;
 
 public class JoueurProfTest extends BaseTestClass {
     @Test
@@ -204,5 +197,22 @@ public class JoueurProfTest extends BaseTestClass {
         assertTrue(containsReferences(cartesRecues));
         assertEquals(0, getArgent(joueur));
         assertEquals(0, getPointsRails(joueur));
+    }
+
+    @Test
+    void test_piocheFaible_defausseVide() {
+        setupJeu();
+        initialisation();
+
+        Carte omni = new TrainOmnibus();
+        Carte gare = new Gare();
+        Carte fondPioche = new Ferraille();
+
+        addAll(pioche, omni);
+        addAll(defausse, gare, fondPioche);
+
+        List<Carte> Cartes = joueur.piocher(4);
+
+        assertTrue(containsSame(Cartes,omni,gare,fondPioche));
     }
 }
