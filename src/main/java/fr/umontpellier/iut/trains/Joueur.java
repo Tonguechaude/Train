@@ -200,25 +200,63 @@ public class Joueur {
      * cartes, piocher 5 nouvelles cartes en main, etc.
      * </ol>
      */
-    public void jouerTour() {
+    public void jouerTour()
+    {
         // Initialisation
         jeu.log("<div class=\"tour\">Tour de " + toLog() + "</div>");
-        // À FAIRE: compléter l'initialisation du tour si nécessaire (mais possiblement
-        // rien de spécial à faire)
 
         boolean finTour = false;
         // Boucle principale
-        while (!finTour) {
+        while (!finTour)
+        {
             List<String> choixPossibles = new ArrayList<>();
-            // À FAIRE: préparer la liste des choix possibles
-
+            for (Carte c : main)
+            {
+                // ajoute les noms de toutes les cartes en main
+                choixPossibles.add(c.getNom());
+            }
+            for (String nomCarte : jeu.getReserve().keySet())
+            {
+                // ajoute les noms des cartes dans la réserve préfixés de "ACHAT:"
+                choixPossibles.add("ACHAT:" + nomCarte);
+            }
             // Choix de l'action à réaliser
             String choix = choisir(String.format("Tour de %s", this.nom), choixPossibles, null, true);
 
-            // À FAIRE: exécuter l'action demandée par le joueur
+            if (choix.startsWith("ACHAT:"))
+            {
+                // prendre une carte dans la réserve
+                String nomCarte = choix.split(":")[1];
+                Carte carte = jeu.prendreDansLaReserve(nomCarte);
+                if (carte != null)
+                {
+                    log("Reçoit " + carte); // affichage dans le log
+                    cartesRecues.add(carte);
+                }
+            } else if (choix.equals(""))
+            {
+                // terminer le tour
+                finTour = true;
+            }
+            else
+            {
+                // jouer une carte de la main
+                Carte carte = main.retirer(choix);
+                log("Joue " + carte); // affichage dans le log
+                cartesEnJeu.add(carte); // mettre la carte en jeu
+                carte.jouer(this); // exécuter l'action de la carte
+            }
         }
         // Finalisation
-        // À FAIRE: compléter la finalisation du tour
+        // défausser toutes les cartes
+        defausse.addAll(main);
+        main.clear();
+        defausse.addAll(cartesRecues);
+        cartesRecues.clear();
+        defausse.addAll(cartesEnJeu);
+        cartesEnJeu.clear();
+
+        main.addAll(piocher(5)); // piocher 5 cartes en main
     }
 
     /**
