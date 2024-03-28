@@ -4,4 +4,6 @@ public class Appartement extends Carte {
     public Appartement() {
         super("Appartement");
     }
+
+
 }
