@@ -18,7 +18,12 @@ public abstract class Carte {
      *
      * @param nom
      */
-    public Carte(String nom, int prix) {
+    public Carte(String nom) {
+        this.nom = nom;
+    }
+
+    public Carte (String nom, int prix)
+    {
         this.nom = nom;
         this.prix = prix;
     }
