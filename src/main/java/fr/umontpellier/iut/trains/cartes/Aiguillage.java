@@ -4,13 +4,19 @@ import fr.umontpellier.iut.trains.Joueur;
 
 public class Aiguillage extends Carte {
     public Aiguillage() {
-        super("Aiguillage", 5);
-
+        super("Aiguillage", 5, TypeCarte.ACTION);
     }
-    // gérer le prix !!
+
     @Override
     public void jouer(Joueur joueur) {
-        joueur.piocher(2);
-        joueur.setArgent(joueur.getArgent() - 5);
+        if (joueur.getArgent() >= 5)
+        {
+            joueur.piocher(2);
+            joueur.setArgent(joueur.getArgent() - 5);
+        }
+        else
+        {
+            joueur.log("Vous n'avez pas assez d'argent !");
+        }
     }
 }

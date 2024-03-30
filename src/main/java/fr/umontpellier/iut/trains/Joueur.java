@@ -405,4 +405,17 @@ public class Joueur {
     public void setArgent(int argent) {
         this.argent = argent;
     }
+
+    public void addCarteRecue (Carte carte)
+    {
+        cartesRecues.add(carte);
+    }
+
+    public ListeDeCartes getMain() {
+        return main;
+    }
+
+    public Jeu getJeu() {
+        return jeu;
+    }
 }
