@@ -418,4 +418,12 @@ public class Joueur {
     public Jeu getJeu() {
         return jeu;
     }
+
+    public ListeDeCartes getDefausse() {
+        return defausse;
+    }
+
+    public ListeDeCartes getPioche() {
+        return pioche;
+    }
 }

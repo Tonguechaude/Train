@@ -11,7 +11,6 @@ public class Appartement extends Carte {
     @Override
     public void jouer(Joueur joueur)
     {
-
         if(joueur.getArgent() >= 3)
         {
             joueur.setArgent(joueur.getArgent() - 3);
@@ -21,8 +20,5 @@ public class Appartement extends Carte {
         {
             joueur.log("Bous n'avez pas assez d'argent !");
         }
-
     }
-
-
 }
