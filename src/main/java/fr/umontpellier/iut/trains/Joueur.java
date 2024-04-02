@@ -426,4 +426,9 @@ public class Joueur {
     public ListeDeCartes getPioche() {
         return pioche;
     }
+
+    public void setMain(List<Carte> main) {
+        this.main.addAll(main);
+    }
+
 }

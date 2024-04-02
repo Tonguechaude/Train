@@ -2,52 +2,41 @@ package fr.umontpellier.iut.trains.cartes;
 
 import fr.umontpellier.iut.trains.Joueur;
 
-public class AtelierDeMaintenance extends Carte {
+public class AtelierDeMaintenance extends CarteRouge {
     public AtelierDeMaintenance() {
-        super("Atelier de maintenance", 5, TypeCarte.ACTION);
+        super("Atelier de maintenance", 5);
     }
 
     public void jouer(Joueur joueur)
     {
-        if (joueur.getArgent() >= 5)
+        // Recherche d'une carte de type train dans la main du joueur
+        Carte carteDevoilee = null;
+        for (Carte carte : joueur.getMain())
         {
-            joueur.setArgent(joueur.getArgent() - 5);
-
-            // Recherche d'une carte de type train dans la main du joueur
-            Carte carteDevoilee = null;
-            for (Carte carte : joueur.getMain())
+            if (carte.getType().equals("Train"))
             {
-                if (carte.getType() == TypeCarte.TRAINS)
-                {
-                    carteDevoilee = carte;
-                    break;  // On arrête la recherche dès qu'une carte de type train est trouvée
-                }
+                carteDevoilee = carte;
+                break;  // On arrête la recherche dès qu'une carte de type train est trouvée
             }
+        }
 
-            if (carteDevoilee != null)
+        if (carteDevoilee != null)
+        {
+            // Tente de réserver une carte identique depuis la réserve
+            Carte carteReserve = joueur.getJeu().prendreDansLaReserve(carteDevoilee.getNom());
+            if (carteReserve != null)
             {
-                // Tente de réserver une carte identique depuis la réserve
-                Carte carteReserve = joueur.getJeu().prendreDansLaReserve(carteDevoilee.getNom());
-                if (carteReserve != null)
-                {
-                    joueur.addCarteRecue(carteReserve);
-                    joueur.getJeu().log(String.format("%s a réservé une carte identique à %s depuis la réserve.", joueur.getNom(), carteDevoilee.getNom()));
-                }
-                else
-                {
-                    joueur.getJeu().log("Il n'y a plus de cartes identiques disponibles dans la réserve.");
-                }
+                joueur.addCarteRecue(carteReserve);
+                joueur.getJeu().log(String.format("%s a réservé une carte identique à %s depuis la réserve.", joueur.getNom(), carteDevoilee.getNom()));
             }
             else
             {
-                joueur.getJeu().log("Aucune carte de type train dans la main du joueur.");
+                joueur.getJeu().log("Il n'y a plus de cartes identiques disponibles dans la réserve.");
             }
         }
         else
         {
-            joueur.getJeu().log("Pas assez d'argent pour utiliser l'Atelier de Maintenance.");
+            joueur.getJeu().log("Aucune carte de type train dans la main du joueur.");
         }
     }
-
-
 }

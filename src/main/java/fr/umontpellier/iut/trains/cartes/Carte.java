@@ -4,10 +4,9 @@ import fr.umontpellier.iut.trains.Joueur;
 
 public abstract class Carte {
     private final String nom;
-    private TypeCarte type;
     private int prix;
 
-
+    private String type;
 
     /**
      * Constructeur simple
@@ -31,21 +30,11 @@ public abstract class Carte {
         this.prix = prix;
     }
 
-    public Carte (String nom, int prix, TypeCarte type)
-    {
-        this.nom = nom;
-        this.prix = prix;
-        this.type = type;
-    }
-
 
     public String getNom() {
         return nom;
     }
 
-    public TypeCarte getType() {
-        return type;
-    }
 
     /**
      * Cette fonction est exécutée lorsqu'un joueur joue la carte pendant son tour.
@@ -60,4 +49,7 @@ public abstract class Carte {
     public String toString() {
         return nom;
     }
+
+
+    public abstract String getType();
 }

@@ -4,12 +4,11 @@ import fr.umontpellier.iut.trains.Joueur;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
-public class BureauDuChefDeGare extends Carte {
+public class BureauDuChefDeGare extends CarteRouge {
     public BureauDuChefDeGare() {
-        super("Bureau du chef de gare", 4, TypeCarte.ACTION);
+        super("Bureau du chef de gare", 4);
     }
 
     @Override
@@ -25,7 +24,7 @@ public class BureauDuChefDeGare extends Carte {
             // Afficher les cartes d'action dans la main du joueur et leur position
             for (int i = 0; i < joueur.getMain().size(); i++) {
                 Carte carte = joueur.getMain().get(i);
-                if (carte.getType() == TypeCarte.ACTION) {
+                if (carte.getType().equals("Action")) {
                     joueur.getJeu().log(String.format("%d. %s", i + 1, carte.getNom()));
                     cartesAction.add(carte);
                     nomsCartesAction.add(carte.getNom());
@@ -51,5 +50,7 @@ public class BureauDuChefDeGare extends Carte {
             joueur.getJeu().log("Pas assez d'argent pour utiliser le Bureau du Chef de Gare.");
         }
     }
+
+
 }
 
