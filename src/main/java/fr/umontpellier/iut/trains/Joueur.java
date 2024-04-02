@@ -98,6 +98,7 @@ public class Joueur {
     public CouleurJoueur getCouleur() {
         return couleur;
     }
+    public int getNbJetonsRails() {return nbJetonsRails;}
 
     /**
      * Renvoie le score total du joueur

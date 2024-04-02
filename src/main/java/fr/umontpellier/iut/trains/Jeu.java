@@ -211,8 +211,40 @@ public class Jeu implements Runnable {
      * @return {@code true} si la partie est finie, {@code false} sinon
      */
     public boolean estFini() {
-        // À FAIRE: réécrire cette méthode
+
+        //Il y a au moins 4 piles vides dans la réserve (sans compter la pile de Ferraille) ;
+        if(nbListVides() >= 4)
+        {
+            return true;
+        }
+
+        //Un des joueurs a posé tous ses jetons Rail (chaque joueur en a 20) sur le plateau ;
+        for(Joueur Joueur :joueurs )
+        {
+            if(Joueur.getNbJetonsRails() == 0)
+            {
+                return true;
+            }
+        }
+
+        //Tous les jetons Gare (il y en a 30) ont été posés sur le plateau.
+        if(nbJetonsGare == 0)
+        {
+            return true;
+        }
         return false;
+    }
+
+    public int nbListVides() {
+        int comp = 0;
+        for(ListeDeCartes L : reserve.values())
+        {
+            if(!L.get(0).getNom().equals("Ferraille") && L.isEmpty())
+            {
+                comp++;
+            }
+        }
+        return comp;
     }
 
     /**
