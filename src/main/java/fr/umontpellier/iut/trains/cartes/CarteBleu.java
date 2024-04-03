@@ -13,5 +13,4 @@ public abstract class CarteBleu extends Carte
         super(nom, prix);
         this.type = "Train";
     }
-
 }

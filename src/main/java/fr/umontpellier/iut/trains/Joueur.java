@@ -432,4 +432,14 @@ public class Joueur {
         this.main.addAll(main);
     }
 
+    public List<String> getNomMain ()
+    {
+        List<String> liste = new ArrayList<>();
+        for ( Carte c : this.getMain())
+        {
+            liste.add(c.getNom());
+        }
+        return liste;
+    }
+
 }
