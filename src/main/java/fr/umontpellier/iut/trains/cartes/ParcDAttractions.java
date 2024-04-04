@@ -1,7 +1,14 @@
 package fr.umontpellier.iut.trains.cartes;
 
-public class ParcDAttractions extends Carte {
+import fr.umontpellier.iut.trains.Joueur;
+
+public class ParcDAttractions extends CarteRouge {
     public ParcDAttractions() {
-        super("Parc d'attractions");
+        super("Parc d'attractions",4);
+    }
+
+    @Override
+    public void jouer(Joueur joueur) {
+
     }
 }

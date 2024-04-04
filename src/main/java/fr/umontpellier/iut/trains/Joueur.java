@@ -402,6 +402,9 @@ public class Joueur {
     public int getArgent() {
         return argent;
     }
+    public void addArgent(int argent) {
+        this.argent += argent;
+    }
 
     public void setArgent(int argent) {
         this.argent = argent;
