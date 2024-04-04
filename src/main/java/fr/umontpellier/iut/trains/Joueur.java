@@ -100,6 +100,15 @@ public class Joueur {
     }
     public int getNbJetonsRails() {return nbJetonsRails;}
 
+    public ListeDeCartes getCartesEnJeu() {
+        return cartesEnJeu;
+    }
+
+
+    public void setCartesEnJeu(ListeDeCartes cartesEnJeu) {
+        this.cartesEnJeu = cartesEnJeu;
+    }
+
     /**
      * Renvoie le score total du joueur
      * <p>

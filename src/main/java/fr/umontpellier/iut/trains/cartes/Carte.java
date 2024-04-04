@@ -5,6 +5,7 @@ import fr.umontpellier.iut.trains.Joueur;
 public abstract class Carte {
     private final String nom;
     private int prix;
+    private int valeur = 0;
 
     private String type;
 
@@ -28,6 +29,11 @@ public abstract class Carte {
     {
         this.nom = nom;
         this.prix = prix;
+    }
+
+    public Carte(String nom, int prix, int valeur) {
+        this(nom,prix);
+        this.valeur = valeur;
     }
 
 

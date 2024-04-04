@@ -13,4 +13,9 @@ public abstract class CarteBleu extends Carte
         super(nom, prix);
         this.type = "Train";
     }
+
+    public CarteBleu(String nom, int prix, int valeur) {
+        super(nom, prix, valeur);
+        this.type = "Train";
+    }
 }

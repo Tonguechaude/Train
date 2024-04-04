@@ -1,7 +1,7 @@
 package fr.umontpellier.iut.trains.cartes;
 
-public class TrainMatinal extends Carte {
+public class TrainMatinal extends CarteBleu {
     public TrainMatinal() {
-        super("Train matinal");
+        super("Train matinal",5,2);
     }
 }

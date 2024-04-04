@@ -4,7 +4,7 @@ import fr.umontpellier.iut.trains.Joueur;
 
 public class TrainDirect extends CarteBleu {
     public TrainDirect() {
-        super("Train direct", 6);
+        super("Train direct", 6,3);
     }
 
     @Override

@@ -129,6 +129,7 @@ public class Jeu implements Runnable {
         return reserve;
     }
 
+
     /**
      * Renvoie un ensemble de tous les noms des cartes en jeu.
      * 
@@ -228,11 +229,7 @@ public class Jeu implements Runnable {
         }
 
         //Tous les jetons Gare (il y en a 30) ont été posés sur le plateau.
-        if(nbJetonsGare == 0)
-        {
-            return true;
-        }
-        return false;
+        return nbJetonsGare == 0;
     }
 
     public int nbListVides() {

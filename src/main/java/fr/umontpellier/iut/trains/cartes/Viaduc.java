@@ -1,7 +1,7 @@
 package fr.umontpellier.iut.trains.cartes;
 
-public class Viaduc extends Carte {
+public class Viaduc extends CarteVerte {
     public Viaduc() {
-        super("Viaduc");
+        super("Viaduc",5);
     }
 }

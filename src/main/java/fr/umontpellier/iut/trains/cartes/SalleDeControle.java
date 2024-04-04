@@ -1,7 +1,7 @@
 package fr.umontpellier.iut.trains.cartes;
 
-public class SalleDeControle extends Carte {
+public class SalleDeControle extends CarteRouge {
     public SalleDeControle() {
-        super("Salle de contrôle");
+        super("Salle de contrôle",7);
     }
 }

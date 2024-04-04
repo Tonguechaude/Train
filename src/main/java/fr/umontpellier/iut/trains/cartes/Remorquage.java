@@ -1,7 +1,7 @@
 package fr.umontpellier.iut.trains.cartes;
 
-public class Remorquage extends Carte {
+public class Remorquage extends CarteRouge {
     public Remorquage() {
-        super("Remorquage");
+        super("Remorquage",3);
     }
 }

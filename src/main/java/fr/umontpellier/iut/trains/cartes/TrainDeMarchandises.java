@@ -1,7 +1,7 @@
 package fr.umontpellier.iut.trains.cartes;
 
-public class TrainDeMarchandises extends Carte {
+public class TrainDeMarchandises extends CarteBleu {
     public TrainDeMarchandises() {
-        super("Train de marchandises");
+        super("Train de marchandises",4,1);
     }
 }
