@@ -1,7 +1,7 @@
 package fr.umontpellier.iut.trains.cartes;
 
-public class CentreDeRenseignements extends Carte {
+public class CentreDeRenseignements extends CarteRouge {
     public CentreDeRenseignements() {
-        super("Centre de renseignements");
+        super("Centre de renseignements", 4);
     }
 }

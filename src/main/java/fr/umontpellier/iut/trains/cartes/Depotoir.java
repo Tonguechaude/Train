@@ -1,7 +1,7 @@
 package fr.umontpellier.iut.trains.cartes;
 
-public class Depotoir extends Carte {
+public class Depotoir extends CarteRouge {
     public Depotoir() {
-        super("Dépotoir");
+        super("Dépotoir", 5);
     }
 }

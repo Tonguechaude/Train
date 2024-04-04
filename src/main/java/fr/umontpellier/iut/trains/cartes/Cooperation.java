@@ -1,7 +1,7 @@
 package fr.umontpellier.iut.trains.cartes;
 
-public class Cooperation extends Carte {
+public class Cooperation extends CarteVerte {
     public Cooperation() {
-        super("Coopération");
+        super("Coopération", 5);
     }
 }
