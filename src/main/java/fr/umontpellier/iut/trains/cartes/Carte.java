@@ -4,7 +4,7 @@ import fr.umontpellier.iut.trains.Joueur;
 
 public abstract class Carte {
     private final String nom;
-    private int prix;
+    private int prix = 0;
     private int valeur = 0;
 
     private String type;
@@ -27,7 +27,7 @@ public abstract class Carte {
 
     public Carte (String nom, int prix)
     {
-        this.nom = nom;
+        this(nom);
         this.prix = prix;
     }
 
@@ -41,6 +41,13 @@ public abstract class Carte {
         return nom;
     }
 
+    public int getPrix() {
+        return prix;
+    }
+
+    public int getValeur() {
+        return valeur;
+    }
 
     /**
      * Cette fonction est exécutée lorsqu'un joueur joue la carte pendant son tour.
@@ -48,8 +55,7 @@ public abstract class Carte {
      *
      * @param joueur le joueur qui joue la carte
      */
-    public void jouer(Joueur joueur) {
-    }
+    public void jouer(Joueur joueur) {}
 
     @Override
     public String toString() {

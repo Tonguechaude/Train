@@ -256,6 +256,7 @@ public class Joueur {
             {
                 // jouer une carte de la main
                 Carte carte = main.retirer(choix);
+                this.addArgent(carte.getValeur()); // le joueur gagne la valeur de la carte à la posée
                 log("Joue " + carte); // affichage dans le log
                 cartesEnJeu.add(carte); // mettre la carte en jeu
                 carte.jouer(this); // exécuter l'action de la carte

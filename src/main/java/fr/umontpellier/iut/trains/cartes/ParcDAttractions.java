@@ -9,16 +9,26 @@ public class ParcDAttractions extends CarteRouge {
     public ParcDAttractions() {
         super("Parc d'attractions",4,1);
     }
-/*
+    //Recevez X¥. X est égal à la valeur d'une de vos cartes TRAIN en jeu.
     @Override
     public void jouer(Joueur joueur) {
-        ArrayList<String> boutons = new ArrayList<>();
-        for(int i = 0 ; i < joueur.getCartesEnJeu().size() ; i++)
+        ArrayList<String> choix = new ArrayList<>();
+        for (Carte c : joueur.getCartesEnJeu()) // récupération de toutes les cartes de type Trains en jeu
         {
-            if(joueur.getCartesEnJeu().get(i).getType().equals("Bleu"))
+            if (c.getType().equals("Train") && !choix.contains(c.getNom())) //ajout des cartes trains dans la liste de choix
             {
-                boutons.add(new Bouton());
+                choix.add(c.getNom());
             }
         }
-    }*/
+        if (choix.isEmpty()) //si aucune carte train en jeu, la carte ne fait rien
+        {
+            joueur.getJeu().log("aucune cartes <TRAIN> en jeu, vous recevez 1 d'argent (carte Parc d'attractions)");
+        } else
+        {
+            String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type <TRAIN> dont vous voulez recevoir sa valeur";
+            String nomCarteChoisie = joueur.choisir(instructions, choix, null, false);
+
+            joueur.addArgent(joueur.getCartesEnJeu().getCarte(nomCarteChoisie).getValeur());
+        }
+    }
 }
