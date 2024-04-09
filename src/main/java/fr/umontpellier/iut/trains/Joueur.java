@@ -297,7 +297,7 @@ public class Joueur {
      * pourrait utiliser :
      * 
      * <pre>{@code
-     * List<String> boutons = Arrays.asList(new Bouton("Oui !", "oui"), new Bouton("Non !", "non"));
+     * List<Bouton> boutons = Arrays.asList(new Bouton("Oui !", "oui"), new Bouton("Non !", "non"));
      * String input = choisir("Voulez-vous faire ceci ?", null, boutons, false);
      * }</pre>
      * 
@@ -416,10 +416,6 @@ public class Joueur {
         this.argent += argent;
     }
 
-    public void setArgent(int argent) {
-        this.argent = argent;
-    }
-
     public void addCarteRecue (Carte carte)
     {
         cartesRecues.add(carte);
@@ -455,4 +451,16 @@ public class Joueur {
         return liste;
     }
 
+    //enlève la feraille de la main du joueur pour la remettre dans la pile
+    public void removeFerraille(){
+        for(Carte c : main) //recherche de Ferraille dans la main du joueur
+        {
+            if(c.getNom().equals("Ferraille"))
+            {
+                jeu.getReserve().get("Ferraille").add(c);
+                main.remove(c);
+                break;//on s'arrête pour enlever 1 de ferraille
+            }
+        }
+    }
 }
