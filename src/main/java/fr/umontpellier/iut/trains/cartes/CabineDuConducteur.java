@@ -27,7 +27,7 @@ public class CabineDuConducteur extends CarteRouge {
 
         */
 
-        boolean defausser = true;
+        boolean defausser = false;
         List<String> choix = Arrays.asList("defausse", "passer");
 
         while (!defausser)
