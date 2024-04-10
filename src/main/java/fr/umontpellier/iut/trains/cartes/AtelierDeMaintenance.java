@@ -2,41 +2,87 @@ package fr.umontpellier.iut.trains.cartes;
 
 import fr.umontpellier.iut.trains.Joueur;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
 public class AtelierDeMaintenance extends CarteRouge {
     public AtelierDeMaintenance() {
-        super("Atelier de maintenance", 5);
+        super("Atelier de maintenance", 5, 0);
     }
 
     public void jouer(Joueur joueur)
     {
-        // Recherche d'une carte de type train dans la main du joueur
-        Carte carteDevoilee = null;
-        for (Carte carte : joueur.getMain())
-        {
-            if (carte.getType().equals("Train"))
-            {
-                carteDevoilee = carte;
-                break;  // On arrête la recherche dès qu'une carte de type train est trouvée
+        /*
+        Collection<String> cartesTrain = new ArrayList<>();
+
+        // Parcourir la main du joueur pour récupérer les cartes de type train
+        for (Carte carte : joueur.getMain()) {
+            if (carte.getType().equals("Train")) {
+                cartesTrain.add(carte.getNom());
             }
         }
 
-        if (carteDevoilee != null)
+        // Demander au joueur de choisir une carte Train à dévoiler
+        String carteDevoilee = joueur.choisir(
+                "Choisissez une carte Train à dévoiler :",
+                cartesTrain,
+                null,
+                false);
+
+        // Retirer la carte dévoilée de la main du joueur
+        Carte carteRetiree = null;
+        for (Carte carte : joueur.getMain()) {
+            if (carte.getNom().equals(carteDevoilee)) {
+                carteRetiree = carte;
+                break;
+            }
+        }
+        if (carteRetiree != null) {
+            joueur.retirerCarteMain(carteRetiree);
+        }
+
+        // Vérifier s'il reste une carte identique dans la réserve
+        Carte nouvelleCarte = joueur.getJeu().prendreDansLaReserve(carteDevoilee);
+        if (nouvelleCarte != null) {
+            // Ajouter la nouvelle carte à la main du joueur
+            joueur.ajouterCarteMain(nouvelleCarte);
+        }
+        */
+
+
+        ArrayList<String> choix = new ArrayList<>();
+        for (Carte c : joueur.getMain()) // récupération de toutes les cartes de type Trains en jeu
         {
-            // Tente de réserver une carte identique depuis la réserve
-            Carte carteReserve = joueur.getJeu().prendreDansLaReserve(carteDevoilee.getNom());
-            if (carteReserve != null)
+            if (c.getType().equals("Train") && !choix.contains(c.getNom())) //ajout des cartes trains dans la liste de choix
             {
-                joueur.addCarteRecue(carteReserve);
-                joueur.getJeu().log(String.format("%s a réservé une carte identique à %s depuis la réserve.", joueur.getNom(), carteDevoilee.getNom()));
+                choix.add(c.getNom());
             }
-            else
-            {
-                joueur.getJeu().log("Il n'y a plus de cartes identiques disponibles dans la réserve.");
-            }
+        }
+        if (choix.isEmpty()) //si aucune carte train en jeu, la carte ne fait rien
+        {
+            joueur.getJeu().log("aucune cartes <TRAIN> en jeu, vous recevez 1 d'argent (carte Parc d'attractions)");
         }
         else
         {
-            joueur.getJeu().log("Aucune carte de type train dans la main du joueur.");
+            String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type <TRAIN> que vous voulez devoilez";
+            String nomCarteChoisie = joueur.choisir(instructions, choix, null, false);
+
+            joueur.getJeu().log(String.format("Le joueur %s devoile la carte %s !", joueur.getNom(), nomCarteChoisie));
+
+            Carte carteReserve = joueur.getJeu().prendreDansLaReserve(nomCarteChoisie);
+            if (carteReserve != null)
+            {
+                joueur.ajouterCarteMain(carteReserve);
+                joueur.getJeu().log(String.format("%s reçoit une carte %s", joueur.getNom(), carteReserve.getNom()));
+            }
+            else
+            {
+                joueur.getJeu().log("Aucune carte identique en réserve.");
+            }
         }
+        //joueur.getJeu().log(String.format("%s ne peut pas dévoiler de carte Train.", joueur.getNom()));
     }
 }
+

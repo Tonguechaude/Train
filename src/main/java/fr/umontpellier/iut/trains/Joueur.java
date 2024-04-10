@@ -463,4 +463,12 @@ public class Joueur {
             }
         }
     }
+
+    public void ajouterCarteMain(Carte carte) {
+        main.add(carte);
+    }
+
+    public void retirerCarteMain (Carte carte) {
+        main.remove(carte);
+    }
 }
