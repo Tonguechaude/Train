@@ -12,7 +12,7 @@ public abstract class CarteGrise extends Carte
     CarteGrise(String nom, int prix)
     {
         super(nom,prix);
-        this.type = "Feraille";
+        this.type = "Ferraille";
     }
 
     public CarteGrise(String nom, int prix, int valeur) {

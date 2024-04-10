@@ -9,6 +9,7 @@ import java.util.StringJoiner;
 
 import fr.umontpellier.iut.trains.cartes.Carte;
 import fr.umontpellier.iut.trains.cartes.FabriqueListeDeCartes;
+import fr.umontpellier.iut.trains.cartes.Ferraille;
 import fr.umontpellier.iut.trains.cartes.ListeDeCartes;
 
 public class Joueur {
@@ -451,16 +452,15 @@ public class Joueur {
         return liste;
     }
 
-    //enlève la feraille de la main du joueur pour la remettre dans la pile
-    public void removeFerraille(){
-        for(Carte c : main) //recherche de Ferraille dans la main du joueur
+    //enlève nbFerraille de la main du joueur pour les remettre dans la pile
+    public void removeFerraille(int nbFerraille){
+
+        Carte ferraille = new Ferraille();
+
+        while(main.contains(ferraille) && (nbFerraille != 0))
         {
-            if(c.getNom().equals("Ferraille"))
-            {
-                jeu.getReserve().get("Ferraille").add(c);
-                main.remove(c);
-                break;//on s'arrête pour enlever 1 de ferraille
-            }
+            jeu.getReserve().get("Ferraille").add(main.retirer("Ferraille"));
+            nbFerraille--;
         }
     }
 }
