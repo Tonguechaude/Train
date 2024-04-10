@@ -50,6 +50,7 @@ public class CartesProfTest extends BaseTestClass {
         jouerTourPartiel("Atelier de maintenance", "Train express");
 
         assertTrue(containsReferences(main, expr1));
+        assertTrue(containsReferences(main, expr1));
         assertTrue(containsReferencesInOrder(pioche, fondPioche));
         assertTrue(containsReferences(defausse));
         assertTrue(containsReferences(cartesEnJeu, c));
