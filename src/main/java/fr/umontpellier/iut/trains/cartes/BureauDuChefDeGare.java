@@ -8,42 +8,37 @@ import java.util.List;
 
 public class BureauDuChefDeGare extends CarteRouge {
     public BureauDuChefDeGare() {
-        super("Bureau du chef de gare", 4);
+        super("Bureau du chef de gare", 4,0);
     }
 
     @Override
     public void jouer(Joueur joueur) {
 
-        List<Carte> cartesAction = new ArrayList<>();
+        ListeDeCartes cartesAction = new ListeDeCartes();
         List<String> nomsCartesAction = new ArrayList<>();
 
         // Afficher les cartes d'action dans la main du joueur et leur position
-        for (int i = 0; i < joueur.getMain().size(); i++) {
-            Carte carte = joueur.getMain().get(i);
-            if (carte.getType().equals("Action")) {
-                joueur.getJeu().log(String.format("%d. %s", i + 1, carte.getNom()));
-                cartesAction.add(carte);
-                nomsCartesAction.add(carte.getNom());
+        for (Carte c : joueur.getMain()) {
+            if (c.getType().equals("Action")) {
+                joueur.getJeu().log(String.format("%s", c.getNom()));
+                cartesAction.add(c);
+                nomsCartesAction.add(c.getNom());
             }
         }
 
         // Demander au joueur de choisir une carte d'action
-        int choixCarte = Integer.parseInt(joueur.choisir("Choisissez une carte d'action que vous avez en main :",
-                nomsCartesAction, null, false)) - 1;
+        String choixCarte = joueur.choisir("Choisissez une carte d'action que vous avez en main :", nomsCartesAction, null, false);
 
+        Carte carteChoisie = cartesAction.getCarte(choixCarte);
         // Vérifier si le choix du joueur est valide
-        if (choixCarte >= 0 && choixCarte < cartesAction.size()) {
-            Carte carteChoisie = cartesAction.get(choixCarte);
-            joueur.getJeu().log(String.format("Vous avez choisi la carte d'action : %s", carteChoisie.getNom()));
+        joueur.getJeu().log(String.format("Vous avez choisi la carte d'action : %s", carteChoisie.getNom()));
 
-            // Copier l'effet de la carte choisie
-            joueur.addCarteRecue(carteChoisie); // Ajouter la carte choisie aux cartes reçues du joueur
-            carteChoisie.jouer(joueur); // Exécuter l'effet de la carte choisie
-        }
-        else
-        {
-            joueur.getJeu().log("Choix invalide. La carte d'action choisie n'existe pas.");
-        }
+        // Copier l'effet de la carte choisie
+        carteChoisie.jouer(joueur); // Exécuter l'effet de la carte choisie
+
+
+        //joueur.getJeu().log("Choix invalide. La carte d'action choisie n'existe pas.");
+
     }
 }
 

@@ -12,7 +12,7 @@ public class Aiguillage extends CarteRouge {
 
     public Aiguillage()
     {
-        super("Aiguillage", COUT_AIGUILLAGE);
+        super("Aiguillage", COUT_AIGUILLAGE,0);
     }
 
     @Override

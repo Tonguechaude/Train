@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CabineDuConducteur extends CarteRouge {
     public CabineDuConducteur() {
-        super("Cabine du conducteur", 2);
+        super("Cabine du conducteur", 2, 0);
     }
 
     public void joueur (Joueur j)
