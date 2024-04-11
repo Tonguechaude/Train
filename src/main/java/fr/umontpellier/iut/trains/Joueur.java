@@ -445,7 +445,7 @@ public class Joueur {
     public List<String> getNomMain ()
     {
         List<String> liste = new ArrayList<>();
-        for ( Carte c : this.getMain())
+        for ( Carte c : main)
         {
             liste.add(c.getNom());
         }
