@@ -74,7 +74,7 @@ public class AtelierDeMaintenance extends CarteRouge {
             Carte carteReserve = joueur.getJeu().prendreDansLaReserve(nomCarteChoisie);
             if (carteReserve != null)
             {
-                joueur.ajouterCarteMain(carteReserve);
+                joueur.ajouterCarteReçue(carteReserve);
                 joueur.getJeu().log(String.format("%s reçoit une carte %s", joueur.getNom(), carteReserve.getNom()));
             }
             else

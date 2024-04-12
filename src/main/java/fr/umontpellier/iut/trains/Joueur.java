@@ -478,6 +478,12 @@ public class Joueur {
         }
         return liste;
     }
+
+    /**
+     * retire nbFerraille de la pile (réserve) pour l'ajouter dans les cartes reçues du joueur
+     *
+     * @param nbFerraile représente le nombre de cartes ferraille à manipuler
+     */
     public void addFerraille(int nbFerraile) {
         for(int i = 0 ; i < nbFerraile; i++) {
             if(jeu.getReserve().get("Ferraille").isEmpty()){
@@ -495,21 +501,32 @@ public class Joueur {
      * @param nbFerraille représente le nombre de Ferraille a enlever de la main du joueur et a reposer dans la pile (réserve)
      */
     public void removeFerraille(int nbFerraille){
-        //récupérer la liste des cartes dans la main pour vérifier la présence de férraille
+
+        //récupérer la liste des cartes dans la main pour vérifier la présence de ferraille.
         while(this.getNomMain().contains("Ferraille") && (nbFerraille != 0))
         {
-            //remet la feraille retirée dans la pile de la réserve correspondant à la pile de Ferraille
+            //remet la feraille retirée dans la pile de la réserve (correspondant à la pile de Ferraille).
             jeu.getReserve().get("Ferraille").add(main.retirer("Ferraille"));
+
             nbFerraille--;
         }
     }
 
+    /**
+     * ajoute {@param carte} à la main du joueur.
+     *
+     * @param carte i.e la carte à ajouter dans la main du joueur.
+     */
     public void ajouterCarteMain(Carte carte) {
         main.add(carte);
     }
 
     public void retirerCarteMain (Carte carte) {
         main.remove(carte);
+    }
+
+    public void ajouterCarteReçue(Carte carte) {
+        cartesRecues.add(carte);
     }
 
     /**
@@ -532,8 +549,9 @@ public class Joueur {
 
     /**
      * vérifie si le joueur possède une somme d'argent supérieure ou égale à n
-     * @param n
-     * @return true si le joueur à assez d'argent
+     *
+     * @param n représente l'argent à comparer par rapport à celui du joueur
+     * @return true si le joueur à assez d'argent, false sinon
      */
     public boolean isRichEnough(int n) {
         return argent >= n;
