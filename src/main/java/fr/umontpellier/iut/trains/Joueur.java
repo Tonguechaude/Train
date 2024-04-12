@@ -289,7 +289,7 @@ public class Joueur {
         defausse.addAll(cartesEnJeu);
         cartesEnJeu.clear();
 
-        setMain(5); // piocher 5 cartes en main
+        setMain(piocher(5)); // piocher 5 cartes en main
     }
 
     /**
@@ -458,11 +458,11 @@ public class Joueur {
     }
 
     /**
-     * set la main du joueur en y ajoutant le nombre de cartes passé en paramètres
-     * @param n contient le nombre de cartes à ajouter à la main du joueur
+     * set la main du joueur en y ajoutant le set de cartes passé en paramètres
+     * @param main contient les cartes à ajouter à la main du joueur
      */
-    public void setMain(int n) {
-        this.main.addAll(piocher(n));
+    public void setMain(List<Carte> main ) {
+        this.main.addAll(main);
     }
 
     /**

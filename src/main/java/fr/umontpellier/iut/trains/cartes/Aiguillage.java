@@ -18,6 +18,6 @@ public class Aiguillage extends CarteRouge {
     @Override
     public void jouer(Joueur joueur)
     {
-        joueur.setMain(NB_CARTES_A_PIOCHER);
+        joueur.setMain(joueur.piocher(NB_CARTES_A_PIOCHER));
     }
 }
