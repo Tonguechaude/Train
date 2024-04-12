@@ -89,6 +89,13 @@ public abstract class Tuile {
     }
 
     /**
+     * @return le nombre de rails posés sur la Tuile pour ensuite calculer le surcout à appliquer
+     */
+    public int getNombreRails() {
+        return rails.size();
+    }
+
+    /**
      * @return une représentation de la tuile sous la forme d'un dictionnaire de
      *         valeurs sérialisables (qui sera converti en JSON pour l'envoyer à
      *         l'interface
