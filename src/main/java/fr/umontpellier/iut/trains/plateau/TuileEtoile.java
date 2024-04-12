@@ -1,5 +1,7 @@
 package fr.umontpellier.iut.trains.plateau;
 
+import fr.umontpellier.iut.trains.Joueur;
+
 /**
  * Classe représentant une tuile étoile (lieu éloigné)
  */
@@ -14,4 +16,16 @@ public class TuileEtoile extends Tuile {
         this.valeur = valeur;
     }
     public int getValeur(){return valeur;}
+
+    @Override
+    public int surcoutPoseDeRail(Joueur joueur) {
+        int surcout = 0;
+        if (!joueur.getListReductions().contains(TypeTerrain.ETOILE)) {
+            surcout += valeur;
+        }
+        if(!this.estVide()) {
+            surcout += this.getNombreRails();
+        }
+        return surcout;
+    }
 }

@@ -26,6 +26,36 @@ public abstract class Tuile {
     }
 
     /**
+     * Analyse la somme d'argent nécessaire au joueur pour poser un rail sur la tuile (this).
+     * Ne prends pas en compte si le joueur peut poser un rail dessus ou non.
+     *
+     * @param joueur le joueur qui veut poser un rail sur la tuile
+     * @return le surcout pour la pose d'un rail par rapport au joueur
+     */
+    public int surcoutPoseDeRail(Joueur joueur){ return 0; }
+
+    /**
+     * A DEFINIR ET A FINIR
+     * @param joueur
+     * @return
+     */
+    public boolean peutPoserRail(Joueur joueur) {
+        if (this.surcoutPoseDeRail(joueur) < 0) {
+            return false;
+        }
+        if(!joueur.isRichEnough(surcoutPoseDeRail(joueur))){
+            return false;
+        }
+
+        for(Tuile tuile : voisines) {
+            if(tuile.hasRail(joueur)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * @return {@code true} si la tuile ne contient aucun rail, {@code false} sinon
      */
     public boolean estVide() {

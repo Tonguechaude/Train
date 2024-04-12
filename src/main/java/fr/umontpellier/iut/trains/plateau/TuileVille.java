@@ -1,5 +1,7 @@
 package fr.umontpellier.iut.trains.plateau;
 
+import fr.umontpellier.iut.trains.Joueur;
+
 /**
  * Classe représentant une tuile ville (où l'on peut poser des gares)
  */
@@ -17,5 +19,15 @@ public class TuileVille extends Tuile {
         super();
         this.nbGaresMax = taille;
         this.nbGaresPosees = 0;
+    }
+
+    @Override
+    public int surcoutPoseDeRail(Joueur joueur) {
+        int surcout = 1;
+
+        if(!joueur.getListReductions().contains(TypeTerrain.VILLE) && this.nbGaresPosees > 0) {
+            surcout += this.nbGaresPosees;
+        }
+        return surcout;
     }
 }

@@ -7,6 +7,7 @@ import fr.umontpellier.iut.trains.cartes.FabriqueListeDeCartes;
 import fr.umontpellier.iut.trains.cartes.Ferraille;
 import fr.umontpellier.iut.trains.cartes.ListeDeCartes;
 import fr.umontpellier.iut.trains.plateau.Tuile;
+import fr.umontpellier.iut.trains.plateau.TypeTerrain;
 
 public class Joueur {
     /**
@@ -33,7 +34,7 @@ public class Joueur {
     /**
      * Liste des réductions que possède le joueur pour poser des rails
      */
-    private HashSet<String> listReductions;
+    private HashSet<TypeTerrain> listReductions;
     /**
      * Liste des cartes en main
      */
@@ -440,6 +441,13 @@ public class Joueur {
     {
         cartesRecues.add(carte);
     }
+    public void addReduction(TypeTerrain reduction) {
+        listReductions.add(reduction);
+    }
+
+    public HashSet<TypeTerrain> getListReductions() {
+        return listReductions;
+    }
 
     public ListeDeCartes getMain() {
         return main;
@@ -530,6 +538,25 @@ public class Joueur {
     }
 
     /**
+     * cherche les occurrences d'une carte présente dans une liste
+     * @param nomCarte le nom de la carte à manipuler
+     * @param listCartes la liste de cartes dans laquelle chercher les occurences
+     * @return le nombre d'occurences d'une carte dans une liste
+     */
+    public int occurenceNomCarte(String nomCarte, List<Carte> listCartes)
+    {
+        int compteur = 0;
+        for(Carte c : listCartes)
+        {
+            if(nomCarte.equals(c.getNom()))
+            {
+                compteur++;
+            }
+        }
+        return compteur;
+    }
+
+    /**
      * gère la pose de rail (ou de gare) selon la tuile passée en paramètre.
      * prends en compte:
      * -l'argent du joueur
@@ -542,9 +569,7 @@ public class Joueur {
      */
     //A FINIR
     public void poseDeRail(Tuile tuile) {
-        if(listReductions.contains(tuile.getClass())){
 
-        }
     }
 
     /**

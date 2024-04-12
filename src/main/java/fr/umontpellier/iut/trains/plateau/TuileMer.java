@@ -1,5 +1,7 @@
 package fr.umontpellier.iut.trains.plateau;
 
+import fr.umontpellier.iut.trains.Joueur;
+
 /**
  * Classe représentant une tuile de mer (tuile qui ne peut pas être occupée par
  * un rail ou une gare)
@@ -7,5 +9,10 @@ package fr.umontpellier.iut.trains.plateau;
 public class TuileMer extends Tuile {
     public TuileMer() {
         super();
+    }
+
+    @Override
+    public int surcoutPoseDeRail(Joueur joueur) {
+        return -1;
     }
 }
