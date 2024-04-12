@@ -129,6 +129,10 @@ public class Jeu implements Runnable {
         return reserve;
     }
 
+    public Tuile tuileNuméro(int n) {
+        return tuiles.get(n);
+    }
+
 
     /**
      * Renvoie un ensemble de tous les noms des cartes en jeu.

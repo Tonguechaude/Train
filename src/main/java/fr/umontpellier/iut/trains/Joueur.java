@@ -1,16 +1,12 @@
 package fr.umontpellier.iut.trains;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 
 import fr.umontpellier.iut.trains.cartes.Carte;
 import fr.umontpellier.iut.trains.cartes.FabriqueListeDeCartes;
 import fr.umontpellier.iut.trains.cartes.Ferraille;
 import fr.umontpellier.iut.trains.cartes.ListeDeCartes;
+import fr.umontpellier.iut.trains.plateau.Tuile;
 
 public class Joueur {
     /**
@@ -34,6 +30,10 @@ public class Joueur {
      * Nombre de jetons rails disponibles (non placés sur le plateau)
      */
     private int nbJetonsRails;
+    /**
+     * Liste des réductions que possède le joueur pour poser des rails
+     */
+    private HashSet<String> listReductions;
     /**
      * Liste des cartes en main
      */
@@ -72,6 +72,7 @@ public class Joueur {
         pioche = new ListeDeCartes();
         cartesEnJeu = new ListeDeCartes();
         cartesRecues = new ListeDeCartes();
+        listReductions = new HashSet<>();
 
         // créer 7 Train omnibus (non disponibles dans la réserve)
         pioche.addAll(FabriqueListeDeCartes.creerListeDeCartes("Train omnibus", 7));
@@ -222,33 +223,46 @@ public class Joueur {
 
         boolean finTour = false;
         // Boucle principale
-        while (!finTour)
-        {
+        while (!finTour) {
             List<String> choixPossibles = new ArrayList<>();
-            for (Carte c : main)
-            {
+            for (Carte c : main) {
                 // ajoute les noms de toutes les cartes en main
                 choixPossibles.add(c.getNom());
             }
-            for (String nomCarte : jeu.getReserve().keySet())
-            {
+            for (String nomCarte : jeu.getReserve().keySet()) {
                 // ajoute les noms des cartes dans la réserve préfixés de "ACHAT:"
                 choixPossibles.add("ACHAT:" + nomCarte);
+            }
+
+            for (int i = 0; i < jeu.getTuiles().size(); i++) {
+                // ajoute les indexes des tuiles dans les choix possibles pour la pose de rails
+                choixPossibles.add("TUILE:" + i);
             }
             // Choix de l'action à réaliser
             String choix = choisir(String.format("Tour de %s", this.nom), choixPossibles, null, true);
 
-            if (choix.startsWith("ACHAT:"))
-            {
+            if (choix.startsWith("ACHAT:")) {
                 // prendre une carte dans la réserve
                 String nomCarte = choix.split(":")[1];
                 Carte carte = jeu.prendreDansLaReserve(nomCarte);
-                if (carte != null)
-                {
+                if (carte != null) {
                     log("Reçoit " + carte); // affichage dans le log
                     cartesRecues.add(carte);
                 }
-            } else if (choix.equals(""))
+            } else if (choix.startsWith("TUILE:"))
+            {
+                if(pointsRails > 0)
+                {
+                    String indexTuile = choix.split(":")[1];
+                    Tuile tuile = jeu.getTuiles().get(Integer.parseInt(indexTuile));
+                    //fonction qui opère la pose du rail sur la tuile
+
+                } else {
+                    log(String.format("%s n'a pas assez de points pour poser un rail",this.nom));
+                }
+
+            }
+            else if (choix.equals(""))
             {
                 // terminer le tour
                 finTour = true;
@@ -264,6 +278,9 @@ public class Joueur {
             }
         }
         // Finalisation
+        listReductions.clear(); //réductions ne durent qu'un tour
+        argent = 0; // l'argent est réinitialisé chaque tour
+
         // défausser toutes les cartes
         defausse.addAll(main);
         main.clear();
@@ -272,7 +289,7 @@ public class Joueur {
         defausse.addAll(cartesEnJeu);
         cartesEnJeu.clear();
 
-        main.addAll(piocher(5)); // piocher 5 cartes en main
+        setMain(5); // piocher 5 cartes en main
     }
 
     /**
@@ -416,7 +433,9 @@ public class Joueur {
     public void addArgent(int argent) {
         this.argent += argent;
     }
-
+    public void addPointDeRails(int nb) {
+        this.pointsRails += nb;
+    }
     public void addCarteRecue (Carte carte)
     {
         cartesRecues.add(carte);
@@ -438,10 +457,18 @@ public class Joueur {
         return pioche;
     }
 
-    public void setMain(List<Carte> main) {
-        this.main.addAll(main);
+    /**
+     * set la main du joueur en y ajoutant le nombre de cartes passé en paramètres
+     * @param n contient le nombre de cartes à ajouter à la main du joueur
+     */
+    public void setMain(int n) {
+        this.main.addAll(piocher(n));
     }
 
+    /**
+     * Récupère une liste du nom des cartes en main
+     * @return une @ArrayList<String> des noms de carte présent dans la main du joueur
+     */
     public List<String> getNomMain ()
     {
         List<String> liste = new ArrayList<>();
@@ -451,16 +478,56 @@ public class Joueur {
         }
         return liste;
     }
+    public void addFerraille(int nbFerraile) {
+        for(int i = 0 ; i < nbFerraile; i++) {
+            if(jeu.getReserve().get("Ferraille").isEmpty()){
+                break;
+            } else{
+                cartesRecues.add(jeu.getReserve().get("Ferraille").retirer("Ferraille"));
+            }
+        }
+    }
 
-    //enlève nbFerraille de la main du joueur pour les remettre dans la pile
+    /**
+     * enlève nbFerraille de la main du joueur pour les remettre dans la pile
+     * si nbFerraille == -1 --> retire toute la ferraille presente dans la main
+     *
+     * @param nbFerraille représente le nombre de Ferraille a enlever de la main du joueur et a reposer dans la pile (réserve)
+     */
     public void removeFerraille(int nbFerraille){
-
-        Carte ferraille = new Ferraille();
-
-        while(main.contains(ferraille) && (nbFerraille != 0))
+        //récupérer la liste des cartes dans la main pour vérifier la présence de férraille
+        while(this.getNomMain().contains("Ferraille") && (nbFerraille != 0))
         {
+            //remet la feraille retirée dans la pile de la réserve correspondant à la pile de Ferraille
             jeu.getReserve().get("Ferraille").add(main.retirer("Ferraille"));
             nbFerraille--;
         }
+    }
+
+    /**
+     * gère la pose de rail (ou de gare) selon la tuile passée en paramètre.
+     * prends en compte:
+     * -l'argent du joueur
+     * -les rails posés dessus
+     * -les réductions appliquées au joueur
+     * -la feraille ajoutée au joueur en cas de joueur présent sur la tuile
+     * -le nombre de gare max pour une ville et la capacité du joueur a en poser une
+     *
+     * @param tuile i.e la tuile sur laquelle poser le rail
+     */
+    //A FINIR
+    public void poseDeRail(Tuile tuile) {
+        if(listReductions.contains(tuile.getClass())){
+
+        }
+    }
+
+    /**
+     * vérifie si le joueur possède une somme d'argent supérieure ou égale à n
+     * @param n
+     * @return true si le joueur à assez d'argent
+     */
+    public boolean isRichEnough(int n) {
+        return argent >= n;
     }
 }
