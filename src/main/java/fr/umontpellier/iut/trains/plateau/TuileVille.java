@@ -23,9 +23,21 @@ public class TuileVille extends Tuile {
 
     @Override
     public int surcoutPoseDeRail(Joueur joueur) {
+        //plus possible de poser une gare
+        if(nbGaresPosees == nbGaresMax)
+        {
+            joueur.getJeu().log("vous ne pouvez pas poser de gare sur cette case car le nombre maximal a déjà été atteint");
+            return -1;
+        } else if (joueur.getJeu().getNbJetonsGare() < 1)
+        {
+            joueur.getJeu().log("toutes les gares ont déjà été posées");
+            return -1;
+        }
+
         int surcout = 1;
 
-        if(!joueur.getListReductions().contains(TypeTerrain.VILLE) && this.nbGaresPosees > 0) {
+        if(!joueur.getListReductions().contains(TypeTerrain.VILLE) && this.nbGaresPosees > 0)
+        {
             surcout += this.nbGaresPosees;
         }
         return surcout;

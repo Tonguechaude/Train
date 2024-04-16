@@ -13,6 +13,7 @@ public class TuileMer extends Tuile {
 
     @Override
     public int surcoutPoseDeRail(Joueur joueur) {
+        joueur.getJeu().log("vous ne pouvez pas poser de rails sur une case <MER>");
         return -1;
     }
 }

@@ -19,13 +19,13 @@ public class TuileEtoile extends Tuile {
 
     @Override
     public int surcoutPoseDeRail(Joueur joueur) {
-        int surcout = 0;
+
+        int surcout = super.surcoutPoseDeRail(joueur);
+
         if (!joueur.getListReductions().contains(TypeTerrain.ETOILE)) {
             surcout += valeur;
         }
-        if(!this.estVide()) {
-            surcout += this.getNombreRails();
-        }
+
         return surcout;
     }
 }
