@@ -50,7 +50,6 @@ public class CartesProfTest extends BaseTestClass {
         jouerTourPartiel("Atelier de maintenance", "Train express");
 
         assertTrue(containsReferences(main, expr1));
-        assertTrue(containsReferences(main, expr1));
         assertTrue(containsReferencesInOrder(pioche, fondPioche));
         assertTrue(containsReferences(defausse));
         assertTrue(containsReferences(cartesEnJeu, c));
@@ -840,7 +839,7 @@ public class CartesProfTest extends BaseTestClass {
         assertTrue(containsReferences(cartesRecues));
         assertEquals(1, getArgent(joueur));
         assertEquals(0, getPointsRails(joueur));
-        assertEquals(getScore(joueur), 1);
+        assertEquals(1, joueur.getScoreTotal());
     }
 
     @Test
