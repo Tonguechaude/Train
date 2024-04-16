@@ -3,7 +3,7 @@ package fr.umontpellier.iut.trains.cartes;
 import fr.umontpellier.iut.trains.Bouton;
 import fr.umontpellier.iut.trains.Joueur;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CentreDeControle extends CarteRouge {
@@ -13,10 +13,47 @@ public class CentreDeControle extends CarteRouge {
 
     public void jouer (Joueur joueur)
     {
-        Carte piocher = joueur.piocher();
-        joueur.ajouterCarteMain(piocher);
+        joueur.ajouterCarteMain(joueur.piocher());
+        List<String> choix = new ArrayList<>();
+        List<Bouton> listeBouton = new ArrayList<>();
 
-        List<Bouton> boutons = Arrays.asList(
+        /* Alternative pour creer tout les boutons */
+
+        for (Carte c : joueur.getMain())
+        {
+            if (!choix.contains(c))
+            {
+                choix.add(c.getNom());
+                listeBouton.add(new Bouton(c.getNom()));
+            }
+        }
+
+        for (Carte c : joueur.getDefausse())
+        {
+            if (!choix.contains(c))
+            {
+                choix.add(c.getNom());
+                listeBouton.add(new Bouton(c.getNom()));
+            }
+        }
+
+        String input = joueur.choisir("Voulez-vous faire ceci ?", null, listeBouton, false);
+
+        Carte pioche2 = joueur.piocher();
+
+        if (pioche2.getNom().equals(input))
+        {
+            joueur.ajouterCarteMain(pioche2);
+        }
+        else
+        {
+            joueur.getPioche().add(0,pioche2);
+        }
+    }
+}
+
+
+/*List<Bouton> boutons = Arrays.asList(
                 new Bouton("Aiguillage !", "Aiguillage"),
                 new Bouton("Appartement !", "Appartement"),
                 new Bouton("Atelier De Mainteance !", "AtelierDeMaintenance"),
@@ -56,23 +93,4 @@ public class CentreDeControle extends CarteRouge {
                 new Bouton("Usine de Wagons !", "UsineDeWagons"),
                 new Bouton("Viaduc !", "Viaduc"),
                 new Bouton("Voie Souterraine !", "VoieSouterraine")
-                );
-
-        String input = joueur.choisir("Voulez-vous faire ceci ?", null, boutons, false);
-
-        Carte pioche2 = joueur.piocher();
-
-        if (pioche2.getNom().equals(input))
-        {
-            joueur.ajouterCarteMain(pioche2);
-        }
-        else
-        {
-            joueur.getPioche().add(0,pioche2);
-        }
-
-
-
-
-    }
-}
+                );*/

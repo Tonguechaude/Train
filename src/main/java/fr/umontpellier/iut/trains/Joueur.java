@@ -584,4 +584,41 @@ public class Joueur {
         }
         return argent >= n;
     }
+
+    public void ajouterCarteDefausse (Carte carte)
+    {
+        defausse.add(carte);
+    }
+
+    public ListeDeCartes getCartesRecues() {
+        return cartesRecues;
+    }
+
+    /**
+     * Defausse une carte passée en paramètre en la retirant de la main et en l'ajoutant aux cartes Écartées
+     * @param carte
+     */
+    public void defausserCarte(Carte carte) {
+
+        if (main.contains(carte)) {
+            Carte carteDefaussee = carte;
+            retirerCarteMain(carte);
+            jeu.getCartesEcartees().add(carteDefaussee);
+        } else {
+            log("Vous ne possédez pas la carte " + carte.toString() + ".");
+        }
+    }
+
+    /**
+     * Prends une list de carte et renvoi une list contenant leur noms
+     * @param cartes
+     * @return
+     */
+    public List<String> getNomsCartes(List<Carte> cartes) {
+        List<String> nomsCartes = new ArrayList<>();
+        for (Carte carte : cartes) {
+            nomsCartes.add(carte.getNom());
+        }
+        return nomsCartes;
+    }
 }
