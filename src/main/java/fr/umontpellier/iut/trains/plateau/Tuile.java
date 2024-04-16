@@ -32,22 +32,44 @@ public abstract class Tuile {
      * @param joueur le joueur qui veut poser un rail sur la tuile
      * @return le surcout pour la pose d'un rail par rapport au joueur
      */
-    public int surcoutPoseDeRail(Joueur joueur){ return 0; }
+    public int surcoutPoseDeRail(Joueur joueur){
+        if(joueur.getListReductions().contains(TypeTerrain.JOUEUR))
+        {
+            return 0;
+        }
+        return getNombreRails();
+    }
 
     /**
-     * A DEFINIR ET A FINIR
-     * @param joueur
-     * @return
+     * vérifie si le {@param joueur} est en mesure de poser un rail sur la tuile en vérifiant certains critères:
+     * - si le joueur possède assez de jetons rails ou s'il reste des jetons gare (géré dans les fonctions de classe)
+     * - si la case est disponible a la pose de rail (ou de gare)
+     * - si le joueur ne possède pas déjà cette tuile
+     * - si le joueur a assez d'argent
+     * - si le joueur possède un rail a proximité pour faire en sorte que ce soit le prolongement de son réseau féroviaire
+     *
+     * @param joueur le joueur dont on veut vérifier la légitimité à poser le rail
+     * @return true si le joueur peut poser un rail, false sinon
      */
     public boolean peutPoserRail(Joueur joueur) {
-        if (this.surcoutPoseDeRail(joueur) < 0) {
-            return false;
-        }
-        if(!joueur.isRichEnough(surcoutPoseDeRail(joueur))){
+        if (this.surcoutPoseDeRail(joueur) < 0)
+        {
             return false;
         }
 
-        for(Tuile tuile : voisines) {
+        if(hasRail(joueur))
+        {
+            joueur.getJeu().log("vous possédez déjà une propriété sur cette case");
+            return false;
+        }
+
+        if(!joueur.isRichEnough(surcoutPoseDeRail(joueur)))
+        {
+            return false;
+        }
+
+        for(Tuile tuile : voisines)
+        {
             if(tuile.hasRail(joueur)){
                 return true;
             }

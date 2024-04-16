@@ -129,8 +129,15 @@ public class Jeu implements Runnable {
         return reserve;
     }
 
-    public Tuile tuileNuméro(int n) {
+    public int getNbJetonsGare() {
+        return nbJetonsGare;
+    }
+
+    public Tuile tuileNumero(int n) {
         return tuiles.get(n);
+    }
+    public void enleverJetonGare() {
+        nbJetonsGare --;
     }
 
 

@@ -17,15 +17,14 @@ public class TuileTerrain extends Tuile {
     }
     @Override
     public int surcoutPoseDeRail(Joueur joueur) {
-        int surcout = 0;
 
-        if(!joueur.getListReductions().contains(type)) {
+        int surcout = super.surcoutPoseDeRail(joueur);
+
+        if(!joueur.getListReductions().contains(type))
+        {
             surcout += type.valeurTerrain();
         }
 
-        if(!this.estVide()) {
-            surcout += this.getNombreRails();
-        }
         return surcout;
     }
 }

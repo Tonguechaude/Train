@@ -7,6 +7,7 @@ import fr.umontpellier.iut.trains.cartes.FabriqueListeDeCartes;
 import fr.umontpellier.iut.trains.cartes.Ferraille;
 import fr.umontpellier.iut.trains.cartes.ListeDeCartes;
 import fr.umontpellier.iut.trains.plateau.Tuile;
+import fr.umontpellier.iut.trains.plateau.TuileVille;
 import fr.umontpellier.iut.trains.plateau.TypeTerrain;
 
 public class Joueur {
@@ -87,10 +88,7 @@ public class Joueur {
         // mélanger la pioche
         pioche.melanger();
         // Piocher 5 cartes en main
-        // Remarque : on peut aussi appeler piocherEnMain(5) si la méthode est écrite
-        for (int i = 0; i < 5; i++) {
-            main.add(pioche.remove(0));
-        }
+        setMain(piocher(5));
 
     }
 
@@ -255,9 +253,13 @@ public class Joueur {
                 if(pointsRails > 0)
                 {
                     String indexTuile = choix.split(":")[1];
-                    Tuile tuile = jeu.getTuiles().get(Integer.parseInt(indexTuile));
-                    //fonction qui opère la pose du rail sur la tuile
-
+                    Tuile tuile = jeu.tuileNumero(Integer.parseInt(indexTuile));
+                    if(tuile.getClass() != TuileVille.class)
+                    {
+                        poseDeRail(tuile);
+                    } else {
+                        jeu.log("vous devez jouer une carte <Gare> pour poser une Gare");
+                    }
                 } else {
                     log(String.format("%s n'a pas assez de points pour poser un rail",this.nom));
                 }
@@ -537,24 +539,7 @@ public class Joueur {
         cartesRecues.add(carte);
     }
 
-    /**
-     * cherche les occurrences d'une carte présente dans une liste
-     * @param nomCarte le nom de la carte à manipuler
-     * @param listCartes la liste de cartes dans laquelle chercher les occurences
-     * @return le nombre d'occurences d'une carte dans une liste
-     */
-    public int occurenceNomCarte(String nomCarte, List<Carte> listCartes)
-    {
-        int compteur = 0;
-        for(Carte c : listCartes)
-        {
-            if(nomCarte.equals(c.getNom()))
-            {
-                compteur++;
-            }
-        }
-        return compteur;
-    }
+
 
     /**
      * gère la pose de rail (ou de gare) selon la tuile passée en paramètre.
@@ -567,9 +552,24 @@ public class Joueur {
      *
      * @param tuile i.e la tuile sur laquelle poser le rail
      */
-    //A FINIR
     public void poseDeRail(Tuile tuile) {
+        if(tuile.peutPoserRail(this))
+        {
+            if(tuile.getClass() == TuileVille.class) {
+                jeu.enleverJetonGare();
+            } else {
+                nbJetonsRails--;
+                if(!tuile.estVide())
+                {
+                    this.addFerraille(1);
+                }
+            }
 
+            // "-" douteux, si bug, à vérifier
+            addArgent(-tuile.surcoutPoseDeRail(this));
+            tuile.ajouterRail(this);
+
+        }
     }
 
     /**
@@ -579,6 +579,9 @@ public class Joueur {
      * @return true si le joueur à assez d'argent, false sinon
      */
     public boolean isRichEnough(int n) {
+        if(argent < n) {
+            getJeu().log(String.format("%s ne possède pas assez d'argent",nom));
+        }
         return argent >= n;
     }
 }

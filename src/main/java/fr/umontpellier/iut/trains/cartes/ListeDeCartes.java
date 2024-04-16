@@ -68,6 +68,7 @@ public class ListeDeCartes extends ArrayList<Carte> {
         return total;
     }
 
+
     /**
      * Représentation de la liste sous forme d'une chaîne de caractères
      * <p>
