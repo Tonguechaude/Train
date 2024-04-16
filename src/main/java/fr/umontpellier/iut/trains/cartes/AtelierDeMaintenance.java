@@ -3,9 +3,7 @@ package fr.umontpellier.iut.trains.cartes;
 import fr.umontpellier.iut.trains.Joueur;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+
 
 public class AtelierDeMaintenance extends CarteRouge {
     public AtelierDeMaintenance() {

@@ -14,20 +14,25 @@ public class CabineDuConducteur extends CarteRouge {
 
     public void joueur (Joueur j)
     {
-        /*
-        List<Bouton> boutons = Arrays.asList(new Bouton("Defausse !", "defausse"), new Bouton("passer !", "passer"));
+
+        int compteur = 0;
 
         for ( Carte c : j.getMain())
         {
-            String input = j.choisir("Voulez-vous faire ceci ?", null, boutons, true);
-            if (input.equals("defausse"))
+            String input = j.choisir("Voulez-vous faire ceci ?", j.getNomMain(), null, true);
+            if (input.equals(c.getNom()))
             {
-                j.piocher();
+                j.defausserCarte(c);
+                j.ajouterCarteMain(j.piocher());
+            }
+            else
+            {
+                return;
             }
         }
 
-        */
 
+        /*
         boolean defausser = false;
         List<String> listeChoix = Arrays.asList("defausse", "passer");
         ListeDeCartes liste = new ListeDeCartes();
@@ -41,7 +46,7 @@ public class CabineDuConducteur extends CarteRouge {
                 if(!j.getMain().isEmpty())
                 {
                     String carteADefausser = j.choisir("Choisissez une carte à défausser :", j.getNomMain(),null, true);
-                    j.getDefausse().add(j.getMain().getCarte(carteADefausser));
+                    j.ajouterCarteDefausse((j.getMain().getCarte(carteADefausser)));
                     j.retirerCarteMain(j.getMain().getCarte(carteADefausser));
                     j.piocher();
                 }
@@ -54,7 +59,7 @@ public class CabineDuConducteur extends CarteRouge {
             {
                 defausser = true;
             }
-        }
+        }*/
 
     }
 
