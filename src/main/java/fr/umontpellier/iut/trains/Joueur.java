@@ -125,7 +125,7 @@ public class Joueur {
      * @return le score total du joueur
      */
     public int getScoreTotal() {
-        // À FAIRE
+        // À FAIRE REGARDER LES REGLES !!!
         return 0;
     }
 
@@ -234,8 +234,10 @@ public class Joueur {
             }
 
             for (int i = 0; i < jeu.getTuiles().size(); i++) {
-                // ajoute les indexes des tuiles dans les choix possibles pour la pose de rails
-                choixPossibles.add("TUILE:" + i);
+                // ajoute les indexes des tuiles dans les choix possibles pour la pose de RAILS (non de gare)
+                if(!jeu.getTuiles().get(i).getClass().equals(TuileVille.class)){
+                    choixPossibles.add("TUILE:" + i);
+                }
             }
             // Choix de l'action à réaliser
             String choix = choisir(String.format("Tour de %s", this.nom), choixPossibles, null, true);
@@ -245,8 +247,19 @@ public class Joueur {
                 String nomCarte = choix.split(":")[1];
                 Carte carte = jeu.prendreDansLaReserve(nomCarte);
                 if (carte != null) {
-                    log("Reçoit " + carte); // affichage dans le log
-                    cartesRecues.add(carte);
+                    if(isRichEnough(carte.getPrix())) //si le joueur a assez d'argent pour acheter la carte
+                    {
+                        if (cartesEnJeu.getCarte("Train matinal") != null) //gère le train matinal
+                        {
+                            trainMatinal(carte);
+                        } else {
+                            log("Reçoit " + carte); // affichage dans le log
+                            cartesRecues.add(carte);
+                        }
+                        addArgent(-carte.getPrix());
+                    } else {
+                        log(String.format("%s ne possède pas assez d'argent",nom));
+                    }
                 }
             } else if (choix.startsWith("TUILE:"))
             {
@@ -544,11 +557,13 @@ public class Joueur {
     /**
      * gère la pose de rail (ou de gare) selon la tuile passée en paramètre.
      * prends en compte:
-     * -l'argent du joueur
-     * -les rails posés dessus
-     * -les réductions appliquées au joueur
-     * -la feraille ajoutée au joueur en cas de joueur présent sur la tuile
-     * -le nombre de gare max pour une ville et la capacité du joueur a en poser une
+     * <ul>
+     * <li> l'argent du joueur
+     * <li> les rails posés dessus
+     * <li> les réductions appliquées au joueur
+     * <li> la feraille ajoutée au joueur en cas de joueur présent sur la tuile
+     * <li> le nombre de gare max pour une ville et la capacité du joueur a en poser une
+     *</ul>
      *
      * @param tuile i.e la tuile sur laquelle poser le rail
      */
@@ -564,10 +579,30 @@ public class Joueur {
                     this.addFerraille(1);
                 }
             }
-
             // "-" douteux, si bug, à vérifier
             addArgent(-tuile.surcoutPoseDeRail(this));
             tuile.ajouterRail(this);
+
+        }
+    }
+
+    /**
+     * gère l'action du train matinal.
+     * @param carte la carte achetée à décider si on la place dans la pioche ou dans les cartes reçues.
+     */
+    public void trainMatinal(Carte carte) {
+        String instructions = "voulez vous l'ajouter sur le dessus de votre pioche ?";
+        List<Bouton> ouiOUnon = Arrays.asList(new Bouton("oui", "oui"), new Bouton("non", "non"));
+        String reponse = choisir(instructions, null, ouiOUnon, false);
+
+        log("Reçoit " + carte); // affichage dans le log
+        switch (reponse)
+        {
+            case "oui":
+                pioche.add(0,carte);
+                break;
+            case "non":
+                cartesRecues.add(carte);
 
         }
     }
