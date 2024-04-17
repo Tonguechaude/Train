@@ -351,5 +351,7 @@ public class Jeu implements Runnable {
                 Map.entry("reserve", listeReserve));
     }
 
-
+    public ListeDeCartes getCartesEcartees() {
+        return cartesEcartees;
+    }
 }
