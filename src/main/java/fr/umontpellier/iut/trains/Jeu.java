@@ -354,4 +354,6 @@ public class Jeu implements Runnable {
     public ListeDeCartes getCartesEcartees() {
         return cartesEcartees;
     }
+
+
 }
