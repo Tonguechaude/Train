@@ -42,4 +42,30 @@ public class TuileVille extends Tuile {
         }
         return surcout;
     }
+
+    public boolean peutPoserGare (Joueur joueur)
+    {
+        if(nbGaresPosees == nbGaresMax)
+        {
+            return false;
+        }
+        else if (joueur.getJeu().getNbJetonsGare() < 1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    @Override
+    public int getNbGares() {
+        return super.getNbGares();
+    }
+
+    public int getNbGaresMax() {
+        return nbGaresMax;
+    }
+
 }
