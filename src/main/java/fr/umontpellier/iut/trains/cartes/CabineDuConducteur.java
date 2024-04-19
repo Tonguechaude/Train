@@ -3,6 +3,7 @@ package fr.umontpellier.iut.trains.cartes;
 import fr.umontpellier.iut.trains.Bouton;
 import fr.umontpellier.iut.trains.Joueur;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,53 +15,32 @@ public class CabineDuConducteur extends CarteRouge {
 
     public void joueur (Joueur j)
     {
+        List<String> choix = new ArrayList<>();
+        int compteurDefausse = 0;
 
-        int compteur = 0;
-
-        for ( Carte c : j.getMain())
+        for (Carte c : j.getMain())
         {
-            String input = j.choisir("Voulez-vous faire ceci ?", j.getNomMain(), null, true);
+            choix.add(c.getNom());
+            choix.add("");
+
+            String input = j.choisir("Voulez-vous faire ceci ?", choix, null, false);
+
             if (input.equals(c.getNom()))
             {
                 j.defausserCarte(c);
-                j.ajouterCarteMain(j.piocher());
+                choix.clear();
+                compteurDefausse ++;
             }
-            else
+            else if (input.equals(""))
             {
+                j.getMain().addAll(j.piocher(compteurDefausse));
+                choix.clear();
                 return;
             }
+
         }
 
-
-        /*
-        boolean defausser = false;
-        List<String> listeChoix = Arrays.asList("defausse", "passer");
-        ListeDeCartes liste = new ListeDeCartes();
-
-        while (!defausser)
-        {
-            String choix = j.choisir("Voulez-vous défausser une carte de votre main ? (defausse ou passer)", listeChoix, null, true);
-
-            if(choix.equals("defausse"))
-            {
-                if(!j.getMain().isEmpty())
-                {
-                    String carteADefausser = j.choisir("Choisissez une carte à défausser :", j.getNomMain(),null, true);
-                    j.ajouterCarteDefausse((j.getMain().getCarte(carteADefausser)));
-                    j.retirerCarteMain(j.getMain().getCarte(carteADefausser));
-                    j.piocher();
-                }
-                else
-                {
-                    j.getJeu().log("Votre main est vide, vous ne pouvez pas défausser de carte.");
-                }
-            }
-            else if (choix.equals("passer"))
-            {
-                defausser = true;
-            }
-        }*/
-
     }
+
 
 }

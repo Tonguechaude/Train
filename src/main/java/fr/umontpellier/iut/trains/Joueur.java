@@ -153,6 +153,11 @@ public class Joueur {
         return piocher;
     }
 
+    public void remettreAuDessusPioche (Carte carte)
+    {
+        pioche.add(0,carte);
+    }
+
     /**
      * Retire et renvoie les {@code n} premières cartes de la pioche.
      * <p>
@@ -636,9 +641,9 @@ public class Joueur {
     public void defausserCarte(Carte carte) {
 
         if (main.contains(carte)) {
-            Carte carteDefaussee = carte;
-            retirerCarteMain(carte);
-            jeu.getCartesEcartees().add(carteDefaussee);
+            defausse.add(carte);
+            main.remove(carte);
+            jeu.getCartesEcartees().add(carte);
         } else {
             log("Vous ne possédez pas la carte " + carte.toString() + ".");
         }
@@ -655,5 +660,10 @@ public class Joueur {
             nomsCartes.add(carte.getNom());
         }
         return nomsCartes;
+    }
+
+    public void addDefausse (Carte carte)
+    {
+        defausse.add(carte);
     }
 }
