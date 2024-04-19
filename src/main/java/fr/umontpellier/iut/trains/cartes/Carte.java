@@ -64,21 +64,4 @@ public abstract class Carte {
 
 
     public abstract String getType();
-
-    @Override
-    public final boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Carte carte)) return false;
-
-        return getPrix() == carte.getPrix() && getValeur() == carte.getValeur() && getNom().equals(carte.getNom()) && getType().equals(carte.getType());
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getNom().hashCode();
-        result = 31 * result + getPrix();
-        result = 31 * result + getValeur();
-        result = 31 * result + getType().hashCode();
-        return result;
-    }
 }

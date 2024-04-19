@@ -22,6 +22,12 @@ public class TuileEtoile extends Tuile {
 
         int surcout = super.surcoutPoseDeRail(joueur);
 
+        //VoieSouterraine
+        if(surcout == -2)
+        {
+            return 0;
+        }
+
         if (!joueur.getListReductions().contains(TypeTerrain.ETOILE)) {
             surcout += valeur;
         }

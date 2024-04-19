@@ -4,7 +4,7 @@ package fr.umontpellier.iut.trains.plateau;
  * Enumération des différents types de terrain des tuiles du plateau
  */
 public enum TypeTerrain {
-    PLAINE, MONTAGNE, FLEUVE,ETOILE,VILLE,MER,JOUEUR;
+    PLAINE, MONTAGNE, FLEUVE,ETOILE,VILLE,MER,JOUEUR,TOUTYPE;
 
     public int valeurTerrain() {
         if(this == FLEUVE)
@@ -31,6 +31,7 @@ public enum TypeTerrain {
             case VILLE -> "VILLE";
             case MER -> "MER";
             case JOUEUR -> "JOUEUR";
+            case TOUTYPE -> "TOUTYPE";
         };
     }
 }
