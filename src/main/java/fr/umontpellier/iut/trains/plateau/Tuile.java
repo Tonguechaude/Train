@@ -33,7 +33,10 @@ public abstract class Tuile {
      * @return le surcout pour la pose d'un rail par rapport au joueur
      */
     public int surcoutPoseDeRail(Joueur joueur){
-        if(joueur.getListReductions().contains(TypeTerrain.JOUEUR))
+        if(joueur.getListReductions().contains(TypeTerrain.TOUTYPE))
+        {
+            return -2;
+        } else if(joueur.getListReductions().contains(TypeTerrain.JOUEUR))
         {
             return 0;
         }

@@ -20,6 +20,11 @@ public class TuileTerrain extends Tuile {
 
         int surcout = super.surcoutPoseDeRail(joueur);
 
+        if(surcout == -2 && type.valeurTerrain() != -1)
+        {
+            return 0;
+        }
+
         if(!joueur.getListReductions().contains(type))
         {
             surcout += type.valeurTerrain();

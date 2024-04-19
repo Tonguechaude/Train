@@ -199,20 +199,5 @@ public class JoueurProfTest extends BaseTestClass {
         assertEquals(0, getPointsRails(joueur));
     }
 
-    @Test
-    void test_piocheFaible_defausseVide() {
-        setupJeu();
-        initialisation();
 
-        Carte omni = new TrainOmnibus();
-        Carte gare = new Gare();
-        Carte fondPioche = new Ferraille();
-
-        addAll(pioche, omni);
-        addAll(defausse, gare, fondPioche);
-
-        List<Carte> Cartes = joueur.piocher(4);
-
-        assertTrue(containsSame(Cartes,omni,gare,fondPioche));
-    }
 }

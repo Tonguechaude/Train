@@ -555,14 +555,13 @@ public class Joueur {
 
 
     /**
-     * gère la pose de rail (ou de gare) selon la tuile passée en paramètre.
+     * gère la pose de rail selon la tuile passée en paramètre.
      * prends en compte:
      * <ul>
      * <li> l'argent du joueur
      * <li> les rails posés dessus
      * <li> les réductions appliquées au joueur
      * <li> la feraille ajoutée au joueur en cas de joueur présent sur la tuile
-     * <li> le nombre de gare max pour une ville et la capacité du joueur a en poser une
      *</ul>
      *
      * @param tuile i.e la tuile sur laquelle poser le rail
@@ -570,19 +569,14 @@ public class Joueur {
     public void poseDeRail(Tuile tuile) {
         if(tuile.peutPoserRail(this))
         {
-            if(tuile.getClass() == TuileVille.class) {
-                jeu.enleverJetonGare();
-            } else {
                 nbJetonsRails--;
                 if(!tuile.estVide())
                 {
                     this.addFerraille(1);
                 }
-            }
-            // "-" douteux, si bug, à vérifier
+            // {-} douteux, si bug, à vérifier
             addArgent(-tuile.surcoutPoseDeRail(this));
             tuile.ajouterRail(this);
-
         }
     }
 
@@ -603,7 +597,7 @@ public class Joueur {
                 break;
             case "non":
                 cartesRecues.add(carte);
-
+                break;
         }
     }
 
