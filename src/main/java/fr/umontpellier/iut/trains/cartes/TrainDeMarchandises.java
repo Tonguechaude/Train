@@ -19,7 +19,7 @@ public class TrainDeMarchandises extends CarteBleu {
         for(int i = 1 ; i <= nbFerrailleEnMain ; i++) {
             choixPossibles.add("Ferraille");
         }
-        String isntructions = "veuillez choisir la cartes ferraille à retirer de votre main";
+        String isntructions = "Veuillez choisir la carte <FERRAILLE> à retirer de votre main.";
         String choix = joueur.choisir(isntructions,choixPossibles,null,true);
         while(choixPossibles.contains(choix) || !choix.isEmpty()) {
             choixPossibles.remove(choix);

@@ -10,6 +10,6 @@ public class SalleDeControle extends CarteRouge {
     @Override
     public void jouer(Joueur joueur) {
         joueur.setMain(joueur.piocher(3));
-        joueur.getJeu().log(String.format("%s pioche 3 cartes",joueur.getNom()));
+        joueur.getJeu().log(String.format("%s pioche 3 cartes.",joueur.getNom()));
     }
 }

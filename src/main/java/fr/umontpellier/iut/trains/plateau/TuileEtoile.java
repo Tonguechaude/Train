@@ -15,7 +15,6 @@ public class TuileEtoile extends Tuile {
         super();
         this.valeur = valeur;
     }
-    public int getValeur(){return valeur;}
 
     @Override
     public int surcoutPoseDeRail(Joueur joueur) {
@@ -23,7 +22,7 @@ public class TuileEtoile extends Tuile {
         int surcout = super.surcoutPoseDeRail(joueur);
 
         //VoieSouterraine
-        if(surcout == -2)
+        if(surcout == -1)
         {
             return 0;
         }
@@ -33,5 +32,14 @@ public class TuileEtoile extends Tuile {
         }
 
         return surcout;
+    }
+
+    @Override
+    public int getPointVictoire(Joueur joueur) {
+        if(hasRail(joueur))
+        {
+            return valeur;
+        }
+        return 0;
     }
 }

@@ -133,9 +133,6 @@ public class Jeu implements Runnable {
         return nbJetonsGare;
     }
 
-    public Tuile tuileNumero(int n) {
-        return tuiles.get(n);
-    }
     public void enleverJetonGare() {
         nbJetonsGare --;
     }

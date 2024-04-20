@@ -13,6 +13,6 @@ public class TGV extends CarteBleu {
         {
             joueur.addArgent(1);
         }
-        joueur.getJeu().log(String.format("%s reçoit 1 d'argent", joueur.getNom()));
+        joueur.getJeu().log(String.format("%s reçoit 1 d'argent.", joueur.getNom()));
     }
 }

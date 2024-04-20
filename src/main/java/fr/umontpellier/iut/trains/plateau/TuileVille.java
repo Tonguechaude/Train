@@ -37,7 +37,7 @@ public class TuileVille extends Tuile {
 
         //VoieSouterraine
         int surcout = super.surcoutPoseDeRail(joueur);
-        if (surcout == -2)
+        if (surcout == -1)
         {
             return 0;
         }
@@ -78,4 +78,16 @@ public class TuileVille extends Tuile {
         return nbGaresMax;
     }
 
+    @Override
+    public int getPointVictoire(Joueur joueur) {
+        if(hasRail(joueur)) {
+            return switch (nbGaresPosees) {
+                case 1 -> 2;
+                case 2 -> 4;
+                case 3 -> 8;
+                default -> 0;
+            };
+        }
+        return 0;
+    }
 }

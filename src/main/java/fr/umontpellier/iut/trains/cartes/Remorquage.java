@@ -22,7 +22,7 @@ public class Remorquage extends CarteRouge {
         }
         if(!listChoix.isEmpty())
         {
-            String instructions = "entrez le nom ou cliquez sur une carte de type Train présente dans votre défausse pour la récupérer dans votre main";
+            String instructions = "Entrez le nom ou cliquez sur une carte de type Train présente dans votre défausse pour la récupérer dans votre main.";
             String choix = joueur.choisir(instructions, listChoix,null,true);
 
             if(!choix.equals(""))

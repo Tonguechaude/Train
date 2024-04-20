@@ -18,7 +18,7 @@ public class PersonnelDeGare extends CarteRouge {
                 new Bouton("argent","argent"),
                 new Bouton("ferraille","ferraille"));
 
-        String instructions = "veuillez choisir entre piocher 1 carte, gagner 1 d'argent ou remettre 1 de ferraille dans la pile";
+        String instructions = "Veuillez choisir entre piocher 1 carte, gagner 1 d'argent ou remettre 1 de ferraille dans la pile.";
         String choix = joueur.choisir(instructions,null,boutons,true);
 
         switch (choix)

@@ -33,6 +33,11 @@ public class Joueur {
      */
     private int nbJetonsRails;
     /**
+     * Score courant de points de victoires obtenus durant la partie.
+     * <> score total du joueur. (cf. getScoreTotal();)
+     */
+    private int scoreCourant;
+    /**
      * Liste des réductions que possède le joueur pour poser des rails
      */
     private HashSet<TypeTerrain> listReductions;
@@ -69,6 +74,7 @@ public class Joueur {
         argent = 0;
         pointsRails = 0;
         nbJetonsRails = 20;
+        scoreCourant = 0;
         main = new ListeDeCartes();
         defausse = new ListeDeCartes();
         pioche = new ListeDeCartes();
@@ -125,8 +131,17 @@ public class Joueur {
      * @return le score total du joueur
      */
     public int getScoreTotal() {
-        // À FAIRE REGARDER LES REGLES !!!
-        return 0;
+        int scoreTotal = scoreCourant;
+        for(Tuile tuile : jeu.getTuiles()) {
+            scoreTotal += tuile.getPointVictoire(this);
+        }
+        for(Carte carte : main) {
+
+        }
+        for(Carte carte : cartesEnJeu) {
+
+        }
+        return scoreTotal;
     }
 
     /**
@@ -235,9 +250,7 @@ public class Joueur {
 
             for (int i = 0; i < jeu.getTuiles().size(); i++) {
                 // ajoute les indexes des tuiles dans les choix possibles pour la pose de RAILS (non de gare)
-                if(!jeu.getTuiles().get(i).getClass().equals(TuileVille.class)){
                     choixPossibles.add("TUILE:" + i);
-                }
             }
             // Choix de l'action à réaliser
             String choix = choisir(String.format("Tour de %s", this.nom), choixPossibles, null, true);
@@ -266,13 +279,8 @@ public class Joueur {
                 if(pointsRails > 0)
                 {
                     String indexTuile = choix.split(":")[1];
-                    Tuile tuile = jeu.tuileNumero(Integer.parseInt(indexTuile));
-                    if(tuile.getClass() != TuileVille.class)
-                    {
+                    Tuile tuile = jeu.getTuile(Integer.parseInt(indexTuile));
                         poseDeRail(tuile);
-                    } else {
-                        jeu.log("vous devez jouer une carte <Gare> pour poser une Gare");
-                    }
                 } else {
                     log(String.format("%s n'a pas assez de points pour poser un rail",this.nom));
                 }
@@ -291,6 +299,31 @@ public class Joueur {
                 log("Joue " + carte); // affichage dans le log
                 cartesEnJeu.add(carte); // mettre la carte en jeu
                 carte.jouer(this); // exécuter l'action de la carte
+
+                /*//gérer le type action
+                if(carte.getType().equals("Action"))
+                {
+                    String instructionsAction = "voulez vous effectuer l'action de cette carte ?";
+
+                    List<Bouton> ouiOUnon = Arrays.asList(
+                            new Bouton("oui","oui"),
+                            new Bouton("non","non"));
+
+                    String choixAction = choisir(instructionsAction,null,ouiOUnon,true);
+
+                    if(choixAction.equals("oui") || choixAction.isEmpty())
+                    {
+                        log("Joue " + carte); // affichage dans le log
+                        cartesEnJeu.add(carte); // mettre la carte en jeu
+                        carte.jouer(this); // exécuter l'action de la carte
+                    }
+                }
+                else
+                {
+                    log("Joue " + carte); // affichage dans le log
+                    cartesEnJeu.add(carte); // mettre la carte en jeu
+                    carte.jouer(this); // exécuter l'action de la carte
+                }*/
             }
         }
         // Finalisation
@@ -445,6 +478,14 @@ public class Joueur {
 
     public int getArgent() {
         return argent;
+    }
+
+    public int getPointsRails() {
+        return pointsRails;
+    }
+
+    public void addPtVictoire(int score) {
+        scoreCourant += score;
     }
     public void addArgent(int argent) {
         this.argent += argent;

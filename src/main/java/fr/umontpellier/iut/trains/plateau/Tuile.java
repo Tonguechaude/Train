@@ -35,7 +35,7 @@ public abstract class Tuile {
     public int surcoutPoseDeRail(Joueur joueur){
         if(joueur.getListReductions().contains(TypeTerrain.TOUTYPE))
         {
-            return -2;
+            return -1;
         } else if(joueur.getListReductions().contains(TypeTerrain.JOUEUR))
         {
             return 0;
@@ -44,17 +44,36 @@ public abstract class Tuile {
     }
 
     /**
-     * vérifie si le {@param joueur} est en mesure de poser un rail sur la tuile en vérifiant certains critères:
-     * - si le joueur possède assez de jetons rails ou s'il reste des jetons gare (géré dans les fonctions de classe)
-     * - si la case est disponible a la pose de rail (ou de gare)
-     * - si le joueur ne possède pas déjà cette tuile
-     * - si le joueur a assez d'argent
-     * - si le joueur possède un rail a proximité pour faire en sorte que ce soit le prolongement de son réseau féroviaire
-     *
+     * Retourne 0 par défaut, seul les tuiles villes et étoiles octroient des points de victoire (@override).
+     * @param joueur joueur auquel les points de victoires sont associés
+     * @return les points de victoire octroyés au joueur selon la tuile
+     */
+    public int getPointVictoire(Joueur joueur){
+        return 0;
+    }
+
+    /**
+     * vérifie si le {@code joueur} est en mesure de poser un rail sur la tuile en vérifiant certains critères:
+     * <ul>
+     * <li> si le {@code joueur} possède assez de jetons rails </li>
+     * <li> si la tuile est disponible a la pose de rail </li>
+     * <li> si le {@code joueur} ne possède pas déjà cette tuile </li>
+     * <li> si le {@code joueur} possède assez d'argent
+     * <li> si le {@code joueur} possède un rail a proximité pour faire en sorte que ce soit le prolongement de son réseau féroviaire </li>
+     * </ul>
+     * <p>
+     * La vérification des {@code pointsRails} se fait directement dans jouerTour.
+     * </p>
      * @param joueur le joueur dont on veut vérifier la légitimité à poser le rail
      * @return true si le joueur peut poser un rail, false sinon
      */
     public boolean peutPoserRail(Joueur joueur) {
+        if(joueur.getNbJetonsRails() < 1)
+        {
+            joueur.log("vous ne possédez pas assez de jetons rails");
+            return false;
+        }
+
         if (this.surcoutPoseDeRail(joueur) < 0)
         {
             return false;
@@ -62,7 +81,7 @@ public abstract class Tuile {
 
         if(hasRail(joueur))
         {
-            joueur.getJeu().log("vous possédez déjà une propriété sur cette case");
+            joueur.log("vous possédez déjà un rail sur cette case");
             return false;
         }
 

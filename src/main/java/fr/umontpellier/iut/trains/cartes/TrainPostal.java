@@ -13,7 +13,7 @@ public class TrainPostal extends CarteBleu {
     @Override
     public void jouer(Joueur joueur) {
         List<String> choixPossibles = joueur.getNomsCartes(joueur.getMain());
-        String instructions = "choisissez une carte à défausser de votre main ou passez pour terminer l'effet de la carte";
+        String instructions = "Choisissez une carte à défausser de votre main ou passez pour terminer l'effet de la carte.";
         String choix = joueur.choisir(instructions,choixPossibles,null,true);
         while(!choix.isEmpty())
         {
@@ -21,6 +21,5 @@ public class TrainPostal extends CarteBleu {
             joueur.addArgent(1);
             choix = joueur.choisir(instructions,choixPossibles,null,true);
         }
-
     }
 }
