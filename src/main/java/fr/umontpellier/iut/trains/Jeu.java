@@ -352,5 +352,10 @@ public class Jeu implements Runnable {
         return cartesEcartees;
     }
 
+    public void addNbJetonGare ( int valeur)
+    {
+        nbJetonsGare += valeur;
+    }
+
 
 }

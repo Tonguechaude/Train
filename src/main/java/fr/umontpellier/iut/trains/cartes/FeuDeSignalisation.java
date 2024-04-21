@@ -14,7 +14,6 @@ public class FeuDeSignalisation extends CarteRouge {
     {
         joueur.ajouterCarteMain(joueur.piocher());
 
-
         Carte piocher = joueur.piocher();
         List<Bouton> choix = Arrays.asList(
                 new Bouton("Oui !","oui"),

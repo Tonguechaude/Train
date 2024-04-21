@@ -15,6 +15,13 @@ public class Gare extends CarteViolette {
 
     public void jouer (Joueur joueur)
     {
+
+        if(joueur.getJeu().getNbJetonsGare() < 1)
+        {
+            joueur.addFerraille(1);
+            return;
+        }
+
         List<Bouton> boutons = new ArrayList<>();
         List<Tuile> tuiles = joueur.getJeu().getTuiles();
         int index = 0;
@@ -25,15 +32,18 @@ public class Gare extends CarteViolette {
                 boutons.add(new Bouton("TUILE:"+ index));
             }
         }
+
         String input = joueur.choisir("Choisissez une tuile : ", null, boutons, false);
-        TuileVille tuileChoisie = new TuileVille(0);
-        if(tuileChoisie.peutPoserGare(joueur) || joueur.getJeu().getNbJetonsGare() < 1)
+        int indexTuile = Integer.parseInt(input.replaceAll("[^0-9]", ""));
+        // la ligne dessus est assez complexe frero, elle m'a demandé de la recherche en gros replaceAll va remplacer
+        // tous les charactere par le deuxieme argument, en l'occurence du vide ("") et le [^0-9] tout sauf ce qui est un chiffre
+
+        TuileVille tuileChoisie = (TuileVille) joueur.getJeu().getTuile(indexTuile);
+
+        if(tuileChoisie.peutPoserGare(joueur))
         {
-
+            joueur.getJeu().addNbJetonGare(-1);
+            joueur.addFerraille(1);
         }
-
-
-
-
     }
 }
