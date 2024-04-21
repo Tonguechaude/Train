@@ -673,15 +673,11 @@ public class Joueur {
      * Defausse une carte passée en paramètre en la retirant de la main et en l'ajoutant aux cartes Écartées
      * @param carte
      */
-    public void defausserCarte(Carte carte) {
-
-        if (main.contains(carte)) {
+    public void defausserCarte(Carte carte)
+    {
             defausse.add(carte);
             main.remove(carte);
             jeu.getCartesEcartees().add(carte);
-        } else {
-            log("Vous ne possédez pas la carte " + carte.toString() + ".");
-        }
     }
 
     /**
