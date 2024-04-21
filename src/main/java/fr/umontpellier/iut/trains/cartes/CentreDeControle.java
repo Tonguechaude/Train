@@ -14,6 +14,7 @@ public class CentreDeControle extends CarteRouge {
     public void jouer (Joueur joueur)
     {
         joueur.ajouterCarteMain(joueur.piocher());
+
         List<String> choix = new ArrayList<>();
         List<Bouton> listeBouton = new ArrayList<>();
 
@@ -37,6 +38,15 @@ public class CentreDeControle extends CarteRouge {
             }
         }
 
+        for (Carte c : joueur.getPioche())
+        {
+            if (!choix.contains(c))
+            {
+                choix.add(c.getNom());
+                listeBouton.add(new Bouton(c.getNom()));
+            }
+        }
+
         String input = joueur.choisir("Voulez-vous faire ceci ?", null, listeBouton, false);
 
         Carte pioche2 = joueur.piocher();
@@ -47,7 +57,7 @@ public class CentreDeControle extends CarteRouge {
         }
         else
         {
-            joueur.getPioche().add(0,pioche2);
+            joueur.remettreAuDessusPioche(pioche2);
         }
     }
 }
