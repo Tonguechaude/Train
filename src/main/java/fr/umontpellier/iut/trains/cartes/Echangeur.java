@@ -50,7 +50,6 @@ public class Echangeur extends CarteRouge {
         Carte carteRetiree = cartesTrain.get(choix - 1);
         joueur.remplacerCarteSurDeck(carteRetiree);
         System.out.println("La carte " + carteRetiree.getNom() + " a été remise sur le dessus du deck.");
-    }
     }*/
 
 }

@@ -11,21 +11,24 @@ public class Decharge extends CarteRouge {
 
     public void jouer (Joueur joueur)
     {
-        // Récupère toutes les cartes FERRAILLE de la main du joueur
+
         ListeDeCartes cartesFerraille = new ListeDeCartes();
         for (Carte c : joueur.getMain())
         {
-            if (c.getNom().equals("Feraille"))
+            //if (c.getNom().equals("Ferraille"))
+            if (c instanceof Ferraille)
             {
                 cartesFerraille.add(c);
             }
 
         }
-        // Ajoute toutes les cartes FERRAILLE de la main du joueur à la pile FERRAILLE
-        for (Carte carte : cartesFerraille) {
-            joueur.getJeu().getReserve().get("Ferraille").add(carte);
+        for (Carte carte : cartesFerraille)
+        {
             joueur.retirerCarteMain(carte);
+            joueur.getJeu().getReserve().get("Ferraille").add(carte);
         }
+
+
 
     }
 
