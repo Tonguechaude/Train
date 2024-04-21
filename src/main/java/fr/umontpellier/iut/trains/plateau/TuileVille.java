@@ -53,6 +53,8 @@ public class TuileVille extends Tuile {
         return surcout;
     }
 
+
+
     public boolean peutPoserGare (Joueur joueur)
     {
         if(nbGaresPosees == nbGaresMax)
@@ -71,7 +73,7 @@ public class TuileVille extends Tuile {
 
     @Override
     public int getNbGares() {
-        return super.getNbGares();
+        return nbGaresPosees;
     }
 
     public int getNbGaresMax() {
