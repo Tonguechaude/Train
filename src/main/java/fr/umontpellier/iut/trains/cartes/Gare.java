@@ -16,34 +16,35 @@ public class Gare extends CarteViolette {
     public void jouer (Joueur joueur)
     {
 
-        if(joueur.getJeu().getNbJetonsGare() < 1)
-        {
-            joueur.addFerraille(1);
-            return;
-        }
+        joueur.addFerraille(1);
 
-        List<Bouton> boutons = new ArrayList<>();
-        List<Tuile> tuiles = joueur.getJeu().getTuiles();
-        int index = 0;
-        for ( Tuile tuile : tuiles)
+        if(joueur.getJeu().getNbJetonsGare() >= 1)
         {
-            if(tuile instanceof TuileVille)
+            List<String> choix = new ArrayList<>();
+            List<Tuile> tuiles = joueur.getJeu().getTuiles();
+            int index = 0;
+            for ( Tuile tuile : tuiles)
             {
-                boutons.add(new Bouton("TUILE:"+ index));
+                if(tuile instanceof TuileVille)
+                {
+                    choix.add("TUILE:" + index);
+                }
+                index ++;
             }
-        }
 
-        String input = joueur.choisir("Choisissez une tuile : ", null, boutons, false);
-        int indexTuile = Integer.parseInt(input.replaceAll("[^0-9]", ""));
-        // la ligne dessus est assez complexe frero, elle m'a demandé de la recherche en gros replaceAll va remplacer
-        // tous les charactere par le deuxieme argument, en l'occurence du vide ("") et le [^0-9] tout sauf ce qui est un chiffre
+            String input = joueur.choisir("Choisissez une tuile : ", choix, null, false);
+            int indexTuile = Integer.parseInt(input.split(":")[1]);
+            //int indexTuile = Integer.parseInt(input.replaceAll("[^0-9]", ""));
+            // la ligne dessus est assez complexe frero, elle m'a demandé de la recherche en gros replaceAll va remplacer
+            // tous les charactere par le deuxieme argument, en l'occurence du vide ("") et le [^0-9] tout sauf ce qui est un chiffre
 
-        TuileVille tuileChoisie = (TuileVille) joueur.getJeu().getTuile(indexTuile);
+            TuileVille tuileChoisie = (TuileVille) joueur.getJeu().getTuile(indexTuile);
 
-        if(tuileChoisie.peutPoserGare(joueur))
-        {
-            joueur.getJeu().addNbJetonGare(-1);
-            joueur.addFerraille(1);
+            if(tuileChoisie.peutPoserGare(joueur))
+            {
+                joueur.getJeu().addNbJetonGare(-1);
+                tuileChoisie.addGare();
+            }
         }
     }
 }

@@ -270,7 +270,14 @@ public class Joueur {
                         if (cartesEnJeu.getCarte("Train matinal") != null) //gère le train matinal
                         {
                             trainMatinal(carte);
-                        } else {
+                        }
+                        else if (carte.getType().equals("Victoire"))
+                        {
+                            log("Reçoit " + carte); // affichage dans le log
+                            cartesRecues.add(carte);
+                            addFerraille(1);
+                        }
+                        else {
                             log("Reçoit " + carte); // affichage dans le log
                             cartesRecues.add(carte);
                         }

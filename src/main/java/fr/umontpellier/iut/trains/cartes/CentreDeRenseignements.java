@@ -68,7 +68,7 @@ public class CentreDeRenseignements extends CarteRouge {
                 }
             }*/
             Carte carteReplacer = cartesRetournees.getCarte(choixReplacer);
-            joueur.getPioche().add(joueur.getPioche().size() - 1, carteReplacer);
+            joueur.getPioche().add(0, carteReplacer);
             cartesRetournees.remove(carteReplacer);
         }
 

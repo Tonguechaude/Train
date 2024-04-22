@@ -4,7 +4,7 @@ import fr.umontpellier.iut.trains.Joueur;
 
 public class GratteCiel extends CarteJaune {
     public GratteCiel() {
-        super("Gratte-ciel", 8,0);
+        super("Gratte-ciel", 8,0, 4);
     }
 
     public void jouer (Joueur joueur)

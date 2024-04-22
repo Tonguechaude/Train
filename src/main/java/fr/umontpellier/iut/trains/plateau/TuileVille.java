@@ -71,6 +71,11 @@ public class TuileVille extends Tuile {
         }
     }
 
+    public void addGare ()
+    {
+        nbGaresPosees++;
+    }
+
     @Override
     public int getNbGares() {
         return nbGaresPosees;

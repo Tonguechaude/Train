@@ -4,6 +4,8 @@ public abstract class CarteJaune extends Carte
 {
     private final String type;
 
+    private int pointVictoire;
+
     @Override
     public String getType() {
         return type;
@@ -19,4 +21,11 @@ public abstract class CarteJaune extends Carte
         super(nom, prix, valeur);
         this.type = "Victoire";
     }
+
+    public CarteJaune(String nom, int prix, int valeur, int pointVictoire) {
+        super(nom, prix, valeur);
+        this.type = "Victoire";
+        this.pointVictoire = pointVictoire;
+    }
+
 }
