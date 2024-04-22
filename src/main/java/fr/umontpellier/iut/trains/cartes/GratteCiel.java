@@ -7,9 +7,4 @@ public class GratteCiel extends CarteJaune {
         super("Gratte-ciel", 8,0, 4);
     }
 
-    public void jouer (Joueur joueur)
-    {
-        joueur.ajouterCarteMain(new Ferraille());
-    }
-
 }
