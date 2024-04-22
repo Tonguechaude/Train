@@ -13,34 +13,22 @@ public class CabineDuConducteur extends CarteRouge {
         super("Cabine du conducteur", 2, 0);
     }
 
-    public void joueur (Joueur j)
+    public void jouer (Joueur joueur)
     {
-        List<String> choix = new ArrayList<>();
+        List<String> choix = joueur.getNomMain();
         int compteurDefausse = 0;
 
-        for (Carte c : j.getMain())
+        String input = joueur.choisir("Choisissez les cartes a défausser ou passer.", choix, null, true);
+
+        while (!choix.isEmpty() && !input.isEmpty())
         {
-            choix.add(c.getNom());
-            choix.add("");
-
-            String input = j.choisir("Voulez-vous faire ceci ?", choix, null, false);
-
-            if (input.equals(c.getNom()))
-            {
-                j.defausserCarte(c);
-                choix.clear();
-                compteurDefausse ++;
-            }
-            else if (input.equals(""))
-            {
-                j.getMain().addAll(j.piocher(compteurDefausse));
-                choix.clear();
-                return;
-            }
+            joueur.defausserCarte(joueur.getMain().getCarte(input));
+            choix.remove(joueur.getMain().getCarte(input));
+            compteurDefausse ++;
+            input = joueur.choisir("Choisissez les cartes a défausser ou passer.", choix, null, true);
 
         }
 
+        joueur.setMain(joueur.piocher(compteurDefausse));
     }
-
-
 }

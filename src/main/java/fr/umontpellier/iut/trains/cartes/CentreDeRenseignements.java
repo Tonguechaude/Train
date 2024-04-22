@@ -11,7 +11,7 @@ public class CentreDeRenseignements extends CarteRouge {
         super("Centre de renseignements", 4, 1);
     }
 
-    public void joueur (Joueur joueur)
+    public void jouer (Joueur joueur)
     {
 
        /* if (joueur.getPioche().size() < 4)

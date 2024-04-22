@@ -12,13 +12,13 @@ public class Depot extends CarteRouge {
         super("Dépôt", 3, 1);
     }
 
-    public void joueur (Joueur joueur)
+    public void jouer (Joueur joueur)
     {
 
         joueur.getMain().add(joueur.piocher());
         joueur.getMain().add(joueur.piocher());
 
-        /*List<Bouton> listeChoix = new ArrayList<>();
+        List<Bouton> listeChoix = new ArrayList<>();
         for (Carte c : joueur.getMain())
         {
             listeChoix.add(new Bouton(c.getNom()));
@@ -29,7 +29,7 @@ public class Depot extends CarteRouge {
             String input = joueur.choisir("Qelle carte souhaitez vous defaussez ? ", null, listeChoix, false);
             joueur.defausserCarte(joueur.getMain().getCarte(input));
         }
-*/
+
 
 
         /*je l'ai mis, mais la consigne est bizarre
