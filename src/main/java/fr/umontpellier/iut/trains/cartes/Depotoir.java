@@ -12,7 +12,7 @@ public class Depotoir extends CarteRouge {
         // à revoir
         for ( Carte carte : joueur.getCartesRecues())
         {
-            if (carte instanceof Ferraille)
+            if (carte.getType().equals("Ferraille"))
             {
                 joueur.getCartesRecues().remove(carte);
             }

@@ -4,20 +4,16 @@ import fr.umontpellier.iut.trains.Joueur;
 
 import java.util.List;
 
-public class Aiguillage extends CarteRouge {
-
-
-    private static final int COUT_AIGUILLAGE = 5;
-    private static final int NB_CARTES_A_PIOCHER = 2;
-
+public class Aiguillage extends CarteRouge
+{
     public Aiguillage()
     {
-        super("Aiguillage", COUT_AIGUILLAGE,0);
+        super("Aiguillage", 5,0);
     }
 
     @Override
     public void jouer(Joueur joueur)
     {
-        joueur.setMain(joueur.piocher(NB_CARTES_A_PIOCHER));
+        joueur.setMain(joueur.piocher(2));
     }
 }

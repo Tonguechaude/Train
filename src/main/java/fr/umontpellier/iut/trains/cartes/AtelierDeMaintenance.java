@@ -12,6 +12,38 @@ public class AtelierDeMaintenance extends CarteRouge {
 
     public void jouer(Joueur joueur)
     {
+
+        ArrayList<String> choix = new ArrayList<>();
+        for (Carte c : joueur.getMain()) // récupération de toutes les cartes de type Trains en jeu
+        {
+            if (c.getType().equals("Train") && !choix.contains(c.getNom())) //ajout des cartes trains dans la liste de choix
+            {
+                choix.add(c.getNom());
+            }
+        }
+        if (choix.isEmpty()) //si aucune carte train en jeu, la carte ne fait rien
+        {
+            joueur.getJeu().log("aucune cartes TRAIN en jeu, vous recevez 1 d'argent (carte Parc d'attractions)");
+        }
+        else
+        {
+            String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type TRAIN que vous voulez devoilez";
+            String nomCarteChoisie = joueur.choisir(instructions, choix, null, false);
+
+            joueur.getJeu().log(String.format("Le joueur %s devoile la carte %s !", joueur.getNom(), nomCarteChoisie));
+
+            Carte carteReserve = joueur.getJeu().prendreDansLaReserve(nomCarteChoisie);
+            if (carteReserve != null)
+            {
+                joueur.ajouterCarteReçue(carteReserve);
+                joueur.getJeu().log(String.format("%s reçoit une carte %s", joueur.getNom(), carteReserve.getNom()));
+            }
+            else
+            {
+                joueur.getJeu().log("Aucune carte identique en réserve.");
+            }
+        }
+
         /*
         Collection<String> cartesTrain = new ArrayList<>();
 
@@ -49,37 +81,6 @@ public class AtelierDeMaintenance extends CarteRouge {
         }
         */
 
-
-        ArrayList<String> choix = new ArrayList<>();
-        for (Carte c : joueur.getMain()) // récupération de toutes les cartes de type Trains en jeu
-        {
-            if (c.getType().equals("Train") && !choix.contains(c.getNom())) //ajout des cartes trains dans la liste de choix
-            {
-                choix.add(c.getNom());
-            }
-        }
-        if (choix.isEmpty()) //si aucune carte train en jeu, la carte ne fait rien
-        {
-            joueur.getJeu().log("aucune cartes TRAIN en jeu, vous recevez 1 d'argent (carte Parc d'attractions)");
-        }
-        else
-        {
-            String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type TRAIN que vous voulez devoilez";
-            String nomCarteChoisie = joueur.choisir(instructions, choix, null, false);
-
-            joueur.getJeu().log(String.format("Le joueur %s devoile la carte %s !", joueur.getNom(), nomCarteChoisie));
-
-            Carte carteReserve = joueur.getJeu().prendreDansLaReserve(nomCarteChoisie);
-            if (carteReserve != null)
-            {
-                joueur.ajouterCarteReçue(carteReserve);
-                joueur.getJeu().log(String.format("%s reçoit une carte %s", joueur.getNom(), carteReserve.getNom()));
-            }
-            else
-            {
-                joueur.getJeu().log("Aucune carte identique en réserve.");
-            }
-        }
         //joueur.getJeu().log(String.format("%s ne peut pas dévoiler de carte Train.", joueur.getNom()));
     }
 }

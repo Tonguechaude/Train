@@ -36,7 +36,6 @@ public class BureauDuChefDeGare extends CarteRouge {
         // Copier l'effet de la carte choisie
         carteChoisie.jouer(joueur); // Exécuter l'effet de la carte choisie
 
-
         //joueur.getJeu().log("Choix invalide. La carte d'action choisie n'existe pas.");
 
     }

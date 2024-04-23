@@ -15,16 +15,14 @@ public class HorairesTemporaires extends CarteRouge {
         while (compteurDeTrain < 2)
         {
             Carte piocher = joueur.piocher();
-            if (piocher instanceof CarteBleu)
+            if (piocher.getType().equals("Train"))
             {
                 compteurDeTrain++;
                 joueur.ajouterCarteMain(piocher);
-                joueur.getPioche().retirer(piocher.getNom());
             }
             else
             {
                 joueur.defausserCarte(piocher);
-                joueur.getPioche().retirer(piocher.getNom());
             }
         }
     }

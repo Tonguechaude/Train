@@ -13,9 +13,6 @@ public class Cooperation extends CarteVerte {
         joueur.addPointDeRails(1); // Incrémente le nombre de pointsRails du joueur de 1
         joueur.addFerraille(1);
         joueur.getListReductions().add(TypeTerrain.JOUEUR);
-
-
-
     }
 
 
