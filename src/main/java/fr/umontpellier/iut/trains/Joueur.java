@@ -684,7 +684,7 @@ public class Joueur {
     {
             defausse.add(carte);
             main.remove(carte);
-            jeu.getCartesEcartees().add(carte);
+            //jeu.getCartesEcartees().add(carte);
     }
 
     /**
