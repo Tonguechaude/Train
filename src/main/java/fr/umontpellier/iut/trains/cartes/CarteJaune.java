@@ -22,6 +22,11 @@ public abstract class CarteJaune extends Carte
         this.type = "Victoire";
     }
 
+    @Override
+    public int getPointVictoire() {
+        return pointVictoire;
+    }
+
     public CarteJaune(String nom, int prix, int valeur, int pointVictoire) {
         super(nom, prix, valeur);
         this.type = "Victoire";

@@ -57,7 +57,7 @@ public class TuileVille extends Tuile {
 
     public boolean peutPoserGare (Joueur joueur)
     {
-        if(nbGaresPosees == nbGaresMax)
+        if(nbGaresPosees >= nbGaresMax)
         {
             return false;
         }

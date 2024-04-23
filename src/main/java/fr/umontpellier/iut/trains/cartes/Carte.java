@@ -36,6 +36,13 @@ public abstract class Carte {
         this.valeur = valeur;
     }
 
+    /**
+     * gère les points victoires contenus par une carte (renvoie 0 par défaut, seul les cartes jaunes en contiennent)
+     * @return le nombre de points victoires contenus par la carte
+     */
+    public int getPointVictoire() {
+        return 0;
+    }
 
     public String getNom() {
         return nom;

@@ -13,6 +13,6 @@ public class TrainDeTourisme extends CarteBleu {
 
     @Override
     public void jouer(Joueur joueur) {
-            joueur.addPtVictoire(1);
+        joueur.addPtVictoire(1);
     }
 }

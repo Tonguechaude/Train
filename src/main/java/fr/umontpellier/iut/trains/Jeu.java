@@ -136,6 +136,14 @@ public class Jeu implements Runnable {
     public void enleverJetonGare() {
         nbJetonsGare --;
     }
+    public String getIndexTuile(Tuile tuileCherche) {
+        for(int i = 0 ; i < tuiles.size() ; i++) {
+            if(tuiles.get(i).equals(tuileCherche)) {
+                return String.valueOf(i);
+            }
+        }
+        return null;
+    }
 
 
     /**
@@ -200,7 +208,20 @@ public class Jeu implements Runnable {
      */
     public void run() {
         // initialisation (chaque joueur choisit une position de départ)
-        // À FAIRE: compléter la partie initialisation
+        List<String> choixPossibles = new ArrayList<>();
+        for(Tuile tuile : tuiles)
+        {
+            if(tuile.tuileInitialisation()){
+                choixPossibles.add("TUILE:" + getIndexTuile(tuile));
+            }
+        }
+
+        for(Joueur joueur : joueurs)
+        {
+            String position = joueur.choisir("Choisissez une tuile où positionner votre rail de départ",
+                    choixPossibles,null,false);
+            getTuile(Integer.parseInt(position.split(":")[1])).ajouterRail(joueur);
+        }
 
         // tours des joueurs jusqu'à une condition de fin
         while (!estFini()) {
@@ -240,6 +261,10 @@ public class Jeu implements Runnable {
         return nbJetonsGare == 0;
     }
 
+    /**
+     * compte le nombre de listes vides dans la réserve (sers pour la fonction estFini())
+     * @return le nombre de listes vides dans la réserve
+     */
     public int nbListVides() {
         int comp = 0;
         for(ListeDeCartes L : reserve.values())
@@ -351,11 +376,4 @@ public class Jeu implements Runnable {
     public ListeDeCartes getCartesEcartees() {
         return cartesEcartees;
     }
-
-    public void addNbJetonGare ( int valeur)
-    {
-        nbJetonsGare += valeur;
-    }
-
-
 }

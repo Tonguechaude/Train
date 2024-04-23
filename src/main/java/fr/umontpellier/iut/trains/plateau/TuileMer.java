@@ -16,4 +16,8 @@ public class TuileMer extends Tuile {
         joueur.getJeu().log("vous ne pouvez pas poser de rails sur une case <MER>");
         return -1;
     }
+    @Override
+    public boolean tuileInitialisation() {
+        return false;
+    }
 }

@@ -53,6 +53,14 @@ public abstract class Tuile {
     }
 
     /**
+     * Seules les tuiles mer, lieu éloigné ou contenant un joueur retournent false.
+     * @return vrai si la tuile est éligible pour l'initialisation, false sinon
+     */
+    public boolean tuileInitialisation() {
+        return rails.isEmpty();
+    }
+
+    /**
      * vérifie si le {@code joueur} est en mesure de poser un rail sur la tuile en vérifiant certains critères:
      * <ul>
      * <li> si le {@code joueur} possède assez de jetons rails </li>

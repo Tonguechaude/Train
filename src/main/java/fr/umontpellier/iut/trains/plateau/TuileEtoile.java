@@ -33,6 +33,10 @@ public class TuileEtoile extends Tuile {
 
         return surcout;
     }
+    @Override
+    public boolean tuileInitialisation() {
+        return false;
+    }
 
     @Override
     public int getPointVictoire(Joueur joueur) {

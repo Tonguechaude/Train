@@ -9,6 +9,6 @@ public class PassageEnGare extends CarteRouge {
 
     @Override
     public void jouer(Joueur joueur) {
-        joueur.getMain().add(joueur.piocher());
+        joueur.setMain(joueur.piocher(1));
     }
 }

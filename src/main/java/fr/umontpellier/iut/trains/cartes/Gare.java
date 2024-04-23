@@ -20,6 +20,7 @@ public class Gare extends CarteViolette {
 
         if(joueur.getJeu().getNbJetonsGare() >= 1)
         {
+            boolean tuileChoisieValide = false;
             List<String> choix = new ArrayList<>();
             List<Tuile> tuiles = joueur.getJeu().getTuiles();
             int index = 0;
@@ -31,19 +32,22 @@ public class Gare extends CarteViolette {
                 }
                 index ++;
             }
+            while(!tuileChoisieValide) {
+                String input = joueur.choisir("Choisissez une tuile (Ville): ", choix, null, false);
+                int indexTuile = Integer.parseInt(input.split(":")[1]);
+                //int indexTuile = Integer.parseInt(input.replaceAll("[^0-9]", ""));
+                // la ligne dessus est assez complexe frero, elle m'a demandé de la recherche en gros replaceAll va remplacer
+                // tous les charactere par le deuxieme argument, en l'occurence du vide ("") et le [^0-9] tout sauf ce qui est un chiffre
 
-            String input = joueur.choisir("Choisissez une tuile : ", choix, null, false);
-            int indexTuile = Integer.parseInt(input.split(":")[1]);
-            //int indexTuile = Integer.parseInt(input.replaceAll("[^0-9]", ""));
-            // la ligne dessus est assez complexe frero, elle m'a demandé de la recherche en gros replaceAll va remplacer
-            // tous les charactere par le deuxieme argument, en l'occurence du vide ("") et le [^0-9] tout sauf ce qui est un chiffre
+                TuileVille tuileChoisie = (TuileVille) joueur.getJeu().getTuile(indexTuile);
 
-            TuileVille tuileChoisie = (TuileVille) joueur.getJeu().getTuile(indexTuile);
-
-            if(tuileChoisie.peutPoserGare(joueur))
-            {
-                joueur.getJeu().addNbJetonGare(-1);
-                tuileChoisie.addGare();
+                if (tuileChoisie.peutPoserGare(joueur)) {
+                    joueur.getJeu().enleverJetonGare();
+                    tuileChoisie.addGare();
+                    tuileChoisieValide = true;
+                } else {
+                    joueur.log("Impossible de poser une gare ici.");
+                }
             }
         }
     }

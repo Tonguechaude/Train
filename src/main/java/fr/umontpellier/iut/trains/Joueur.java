@@ -2,10 +2,7 @@ package fr.umontpellier.iut.trains;
 
 import java.util.*;
 
-import fr.umontpellier.iut.trains.cartes.Carte;
-import fr.umontpellier.iut.trains.cartes.FabriqueListeDeCartes;
-import fr.umontpellier.iut.trains.cartes.Ferraille;
-import fr.umontpellier.iut.trains.cartes.ListeDeCartes;
+import fr.umontpellier.iut.trains.cartes.*;
 import fr.umontpellier.iut.trains.plateau.Tuile;
 import fr.umontpellier.iut.trains.plateau.TuileVille;
 import fr.umontpellier.iut.trains.plateau.TypeTerrain;
@@ -135,12 +132,22 @@ public class Joueur {
         for(Tuile tuile : jeu.getTuiles()) {
             scoreTotal += tuile.getPointVictoire(this);
         }
-        for(Carte carte : main) {
 
+        for(Carte carte : main)
+        {
+            scoreTotal += carte.getPointVictoire();
         }
-        for(Carte carte : cartesEnJeu) {
 
+        for(Carte carte : cartesEnJeu)
+        {
+            scoreTotal += carte.getPointVictoire();
         }
+
+        for(Carte carte : pioche)
+        {
+            scoreTotal += carte.getPointVictoire();
+        }
+
         return scoreTotal;
     }
 
@@ -239,7 +246,7 @@ public class Joueur {
     {
         // Initialisation
         jeu.log("<div class=\"tour\">Tour de " + toLog() + "</div>");
-
+        boolean passerTour = true; //
         boolean finTour = false;
         // Boucle principale
         while (!finTour) {
@@ -300,6 +307,19 @@ public class Joueur {
             }
             else if (choix.equals(""))
             {
+                // action spéciale pour défausser la ferraille de la main si l'on passe directement notre tour !!
+                if(passerTour)
+                {
+                    List<Bouton> ouiOUnon = Arrays.asList(
+                        new Bouton("oui"),
+                        new Bouton("non")
+                    );
+                    String deffausserFerraille = choisir("voulez vous défausser la feraille de votre main ?",null,ouiOUnon,false);
+                    if(deffausserFerraille.equals("oui"))
+                    {
+                        removeFerraille(-1); // -1 permet de retirer toute la ferraille de la main
+                    }
+                }
                 // terminer le tour
                 finTour = true;
             }
@@ -307,36 +327,17 @@ public class Joueur {
             {
                 // jouer une carte de la main
                 Carte carte = main.retirer(choix);
-                this.addArgent(carte.getValeur()); // le joueur gagne la valeur de la carte à la posée
-                log("Joue " + carte); // affichage dans le log
-                cartesEnJeu.add(carte); // mettre la carte en jeu
-                carte.jouer(this); // exécuter l'action de la carte
-
-                /*//gérer le type action
-                if(carte.getType().equals("Action"))
-                {
-                    String instructionsAction = "voulez vous effectuer l'action de cette carte ?";
-
-                    List<Bouton> ouiOUnon = Arrays.asList(
-                            new Bouton("oui","oui"),
-                            new Bouton("non","non"));
-
-                    String choixAction = choisir(instructionsAction,null,ouiOUnon,true);
-
-                    if(choixAction.equals("oui") || choixAction.isEmpty())
-                    {
-                        log("Joue " + carte); // affichage dans le log
-                        cartesEnJeu.add(carte); // mettre la carte en jeu
-                        carte.jouer(this); // exécuter l'action de la carte
-                    }
-                }
-                else
-                {
+                if(carte instanceof CarteJaune) {
+                    log("Vous ne pouvez pas jouer une carte <Victoire>");
+                    main.add(carte);
+                } else {
+                    this.addArgent(carte.getValeur()); // le joueur gagne la valeur de la carte à la posée
                     log("Joue " + carte); // affichage dans le log
                     cartesEnJeu.add(carte); // mettre la carte en jeu
                     carte.jouer(this); // exécuter l'action de la carte
-                }*/
+                }
             }
+            passerTour = false;
         }
         // Finalisation
         listReductions.clear(); //réductions ne durent qu'un tour

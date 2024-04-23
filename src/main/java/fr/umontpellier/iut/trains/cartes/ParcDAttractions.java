@@ -26,7 +26,7 @@ public class ParcDAttractions extends CarteRouge {
         } else
         {
             String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type <TRAIN> dont vous voulez recevoir sa valeur.";
-            String nomCarteChoisie = joueur.choisir(instructions, choix, null, false);
+            String nomCarteChoisie = joueur.choisir(instructions, choix, null, true);
 
             joueur.addArgent(joueur.getCartesEnJeu().getCarte(nomCarteChoisie).getValeur());
         }
