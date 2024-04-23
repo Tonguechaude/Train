@@ -12,21 +12,23 @@ public class FeuDeSignalisation extends CarteRouge {
     }
     public void jouer (Joueur joueur)
     {
+        //a revoir, joueur.piocher n'ajoute pas la carte dans la main du joueur
         joueur.ajouterCarteMain(joueur.piocher());
 
         Carte piocher = joueur.piocher();
-        List<Bouton> choix = Arrays.asList(
-                new Bouton("Oui !","oui"),
-                new Bouton("Non !","non"));
-        joueur.log(piocher.getNom());
-        String input = joueur.choisir("Voulez vous la defaussez ?", null, choix,false);
-        if (input.equals("oui"))
-        {
-            joueur.defausserCarte(piocher);
-        }
-        else
-        {
-            joueur.getPioche().add(0,piocher);
+        if(piocher != null) {
+            List<Bouton> choix = Arrays.asList(
+                    new Bouton("Oui !", "oui"),
+                    new Bouton("Non !", "non"));
+            joueur.log(piocher.getNom());
+            String input = joueur.choisir("Voulez vous la défausser ?", null, choix, false);
+            if (input.equals("oui")) {
+                joueur.defausserCarte(piocher);
+            } else {
+                joueur.getPioche().add(0, piocher);
+            }
+        } else {
+            joueur.log("aucune carte disponibles");
         }
     }
 }

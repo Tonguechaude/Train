@@ -9,7 +9,7 @@ public class Depotoir extends CarteRouge {
 
     public void jouer (Joueur joueur)
     {
-
+        // à revoir
         for ( Carte carte : joueur.getCartesRecues())
         {
             if (carte instanceof Ferraille)

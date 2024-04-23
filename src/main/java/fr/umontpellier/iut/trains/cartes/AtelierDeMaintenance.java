@@ -60,11 +60,11 @@ public class AtelierDeMaintenance extends CarteRouge {
         }
         if (choix.isEmpty()) //si aucune carte train en jeu, la carte ne fait rien
         {
-            joueur.getJeu().log("aucune cartes <TRAIN> en jeu, vous recevez 1 d'argent (carte Parc d'attractions)");
+            joueur.getJeu().log("aucune cartes TRAIN en jeu, vous recevez 1 d'argent (carte Parc d'attractions)");
         }
         else
         {
-            String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type <TRAIN> que vous voulez devoilez";
+            String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type TRAIN que vous voulez devoilez";
             String nomCarteChoisie = joueur.choisir(instructions, choix, null, false);
 
             joueur.getJeu().log(String.format("Le joueur %s devoile la carte %s !", joueur.getNom(), nomCarteChoisie));

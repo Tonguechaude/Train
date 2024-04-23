@@ -6,7 +6,7 @@ public class Ferronnerie extends CarteRouge {
     public Ferronnerie() {
         super("Ferronnerie", 4, 1);
     }
-
+    //a revoir, il faut gérer l'exception durant tout le tour
     public void jouer (Joueur joueur)
     {
         for (Carte carte : joueur.getCartesEnJeu())

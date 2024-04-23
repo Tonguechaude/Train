@@ -23,7 +23,7 @@ public class CabineDuConducteur extends CarteRouge {
         while (!choix.isEmpty() && !input.isEmpty())
         {
             joueur.defausserCarte(joueur.getMain().getCarte(input));
-            choix.remove(joueur.getMain().getCarte(input));
+            choix.remove(input);
             compteurDefausse ++;
             input = joueur.choisir("Choisissez les cartes a défausser ou passer.", choix, null, true);
 

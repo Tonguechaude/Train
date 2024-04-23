@@ -15,8 +15,7 @@ public class Depot extends CarteRouge {
     public void jouer (Joueur joueur)
     {
 
-        joueur.getMain().add(joueur.piocher());
-        joueur.getMain().add(joueur.piocher());
+        joueur.setMain(joueur.piocher(2));
 
         List<Bouton> listeChoix = new ArrayList<>();
         for (Carte c : joueur.getMain())
@@ -26,7 +25,7 @@ public class Depot extends CarteRouge {
 
         for (int i = 0; i < 2; i++)
         {
-            String input = joueur.choisir("Qelle carte souhaitez vous defaussez ? ", null, listeChoix, false);
+            String input = joueur.choisir("Quelle carte souhaitez vous défausser ? ", null, listeChoix, false);
             joueur.defausserCarte(joueur.getMain().getCarte(input));
         }
 

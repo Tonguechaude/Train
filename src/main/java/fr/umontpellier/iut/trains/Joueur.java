@@ -289,8 +289,6 @@ public class Joueur {
                             cartesRecues.add(carte);
                         }
                         addArgent(-carte.getPrix());
-                    } else {
-                        log(String.format("%s ne possède pas assez d'argent",nom));
                     }
                 }
             } else if (choix.startsWith("TUILE:"))
@@ -572,8 +570,8 @@ public class Joueur {
     }
 
     /**
-     * enlève nbFerraille de la main du joueur pour les remettre dans la pile
-     * si nbFerraille == -1 --> retire toute la ferraille presente dans la main
+     * Enlève nbFerraille de la main du joueur pour les remettre dans la pile.
+     * Si nbFerraille == -1 --> retire toute la ferraille présente dans la main.
      *
      * @param nbFerraille représente le nombre de Ferraille a enlever de la main du joueur et a reposer dans la pile (réserve)
      */
@@ -624,9 +622,10 @@ public class Joueur {
         if(tuile.peutPoserRail(this))
         {
                 nbJetonsRails--;
+                pointsRails--;
                 if(!tuile.estVide())
                 {
-                    this.addFerraille(1);
+                    addFerraille(1);
                 }
             // {-} douteux, si bug, à vérifier
             addArgent(-tuile.surcoutPoseDeRail(this));
@@ -663,7 +662,7 @@ public class Joueur {
      */
     public boolean isRichEnough(int n) {
         if(argent < n) {
-            getJeu().log(String.format("%s ne possède pas assez d'argent",nom));
+            log("Vous ne possédez pas assez d'argent");
         }
         return argent >= n;
     }

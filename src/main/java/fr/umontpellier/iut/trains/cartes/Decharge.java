@@ -11,8 +11,9 @@ public class Decharge extends CarteRouge {
 
     public void jouer (Joueur joueur)
     {
+        joueur.removeFerraille(-1);
 
-        ListeDeCartes cartesFerraille = new ListeDeCartes();
+        /*ListeDeCartes cartesFerraille = new ListeDeCartes();
         for (Carte c : joueur.getMain())
         {
             //if (c.getNom().equals("Ferraille"))
@@ -26,7 +27,7 @@ public class Decharge extends CarteRouge {
         {
             joueur.retirerCarteMain(carte);
             joueur.getJeu().getReserve().get("Ferraille").add(carte);
-        }
+        }*/
 
 
 
