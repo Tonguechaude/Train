@@ -12,7 +12,6 @@ public class AtelierDeMaintenance extends CarteRouge {
 
     public void jouer(Joueur joueur)
     {
-
         ArrayList<String> choix = new ArrayList<>();
         for (Carte c : joueur.getMain()) // récupération de toutes les cartes de type Trains en jeu
         {
@@ -43,45 +42,6 @@ public class AtelierDeMaintenance extends CarteRouge {
                 joueur.getJeu().log("Aucune carte identique en réserve.");
             }
         }
-
-        /*
-        Collection<String> cartesTrain = new ArrayList<>();
-
-        // Parcourir la main du joueur pour récupérer les cartes de type train
-        for (Carte carte : joueur.getMain()) {
-            if (carte.getType().equals("Train")) {
-                cartesTrain.add(carte.getNom());
-            }
-        }
-
-        // Demander au joueur de choisir une carte Train à dévoiler
-        String carteDevoilee = joueur.choisir(
-                "Choisissez une carte Train à dévoiler :",
-                cartesTrain,
-                null,
-                false);
-
-        // Retirer la carte dévoilée de la main du joueur
-        Carte carteRetiree = null;
-        for (Carte carte : joueur.getMain()) {
-            if (carte.getNom().equals(carteDevoilee)) {
-                carteRetiree = carte;
-                break;
-            }
-        }
-        if (carteRetiree != null) {
-            joueur.retirerCarteMain(carteRetiree);
-        }
-
-        // Vérifier s'il reste une carte identique dans la réserve
-        Carte nouvelleCarte = joueur.getJeu().prendreDansLaReserve(carteDevoilee);
-        if (nouvelleCarte != null) {
-            // Ajouter la nouvelle carte à la main du joueur
-            joueur.ajouterCarteMain(nouvelleCarte);
-        }
-        */
-
-        //joueur.getJeu().log(String.format("%s ne peut pas dévoiler de carte Train.", joueur.getNom()));
     }
 }
 

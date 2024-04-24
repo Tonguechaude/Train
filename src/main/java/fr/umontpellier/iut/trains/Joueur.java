@@ -677,10 +677,7 @@ public class Joueur {
         return argent >= n;
     }
 
-    public void ajouterCarteDefausse (Carte carte)
-    {
-        defausse.add(carte);
-    }
+
 
     public ListeDeCartes getCartesRecues() {
         return cartesRecues;
@@ -694,6 +691,14 @@ public class Joueur {
     {
             defausse.add(carte);
             main.remove(carte);
+    }
+
+    public void defausserToutesLesCartes (ListeDeCartes ldc)
+    {
+        for (Carte carte : ldc)
+        {
+            defausserCarte(carte);
+        }
     }
 
     /**
