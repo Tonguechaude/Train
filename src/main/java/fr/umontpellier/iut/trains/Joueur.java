@@ -327,19 +327,22 @@ public class Joueur {
             else // jouer une carte de la main
             {
                 Carte carte = main.retirer(choix);
-
-                //on ne peut jouer une carte Victoire
-                if(carte.getType().equals("Victoire")) {
-                    log("Vous ne pouvez pas jouer une carte <Victoire>");
-                    main.add(carte);
-                } else {
-                    this.addArgent(carte.getValeur()); // le joueur gagne la valeur de la carte à la posée
-                    log("Joue " + carte); // affichage dans le log
-                    cartesEnJeu.add(carte); // mettre la carte en jeu
-                    carte.jouer(this); // exécuter l'action de la carte
+                if (carte != null) {
+                    //on ne peut jouer une carte Victoire
+                    if(carte.getType().equals("Victoire")) {
+                        log("Vous ne pouvez pas jouer une carte <Victoire>");
+                        main.add(carte);
+                    } else {
+                        this.addArgent(carte.getValeur()); // le joueur gagne la valeur de la carte à la posée
+                        log("Joue " + carte); // affichage dans le log
+                        cartesEnJeu.add(carte); // mettre la carte en jeu
+                        carte.jouer(this); // exécuter l'action de la carte
+                    }
                 }
+
+
             }
-            choixPossibles.remove("Ferraille");
+            choixPossibles.clear();
         }
         // Finalisation
         listReductions.clear(); //réductions ne durent qu'un tour
