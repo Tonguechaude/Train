@@ -23,23 +23,18 @@ public class Depot extends CarteRouge {
             listeChoix.add(new Bouton(c.getNom()));
         }
 
-        for (int i = 0; i < 2; i++)
+        int limite = joueur.getMain().size();
+        if(limite < 2)
         {
-            String input = joueur.choisir("Quelle carte souhaitez vous défausser ? ", null, listeChoix, false);
-            joueur.defausserCarte(joueur.getMain().getCarte(input));
+            joueur.defausserToutesLesCartes(joueur.getMain());
         }
-
-
-
-        /*je l'ai mis, mais la consigne est bizarre
-        if (joueur.getMain().size() < 2) {
-            joueur.getDefausse().addAll(joueur.getMain());
-            joueur.getMain().clear();
-            return;
-        }*/
-
-
-
-
+        else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                String input = joueur.choisir("Quelle carte souhaitez vous défausser ? ", null, listeChoix, false);
+                joueur.defausserCarte(joueur.getMain().getCarte(input));
+            }
+        }
     }
 }
