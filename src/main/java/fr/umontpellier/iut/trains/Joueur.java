@@ -264,11 +264,13 @@ public class Joueur {
 
             for (Carte c : main) {
                 // ajoute les noms de toutes les cartes en main
-                choixPossibles.add(c.getNom());
+                if(!c.getNom().equals("Ferraille")){
+                    choixPossibles.add(c.getNom());
+                }
             }
             for (String nomCarte : jeu.getReserve().keySet()) {
                 // ajoute les noms des cartes dans la réserve préfixés de "ACHAT:"
-                choixPossibles.add("ACHAT:" + nomCarte);
+                    choixPossibles.add("ACHAT:" + nomCarte);
             }
 
             for (int i = 0; i < jeu.getTuiles().size(); i++) {
