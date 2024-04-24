@@ -11,7 +11,7 @@ public class Ferronnerie extends CarteRouge {
     {
         for (Carte carte : joueur.getCartesEnJeu())
         {
-            if (carte instanceof PoseDeRails)
+            if (carte.getType().equals("Rail"))
             {
                 joueur.addArgent(2);
             }

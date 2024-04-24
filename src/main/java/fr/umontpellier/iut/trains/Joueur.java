@@ -340,6 +340,7 @@ public class Joueur {
         // Finalisation
         listReductions.clear(); //réductions ne durent qu'un tour
         argent = 0; // l'argent est réinitialisé chaque tour
+        pointsRails = 0;
 
         // défausser toutes les cartes
         defausse.addAll(main);
@@ -560,13 +561,22 @@ public class Joueur {
      * @param nbFerraile représente le nombre de cartes ferraille à manipuler
      */
     public void addFerraille(int nbFerraile) {
-        for(int i = 0 ; i < nbFerraile; i++) {
-            if(jeu.getReserve().get("Ferraille").isEmpty()){
-                break;
-            } else{
-                cartesRecues.add(jeu.getReserve().get("Ferraille").retirer("Ferraille"));
+
+        Cooperation checkCooperation = (Cooperation) cartesEnJeu.getCarte("Coopération");
+        // condition pour les cartes depotoires et cooperation qui n'ajoutent pas la ferraille
+        if (cartesEnJeu.getCarte("Dépotoire") == null && (checkCooperation == null || (checkCooperation != null && !checkCooperation.getEstActif())))
+        {
+            for(int i = 0 ; i < nbFerraile; i++) {
+                if(jeu.getReserve().get("Ferraille").isEmpty()){
+                    break;
+                } else{
+                    cartesRecues.add(jeu.getReserve().get("Ferraille").retirer("Ferraille"));
+                }
             }
         }
+
+
+
     }
 
     /**
@@ -684,7 +694,6 @@ public class Joueur {
     {
             defausse.add(carte);
             main.remove(carte);
-            //jeu.getCartesEcartees().add(carte);
     }
 
     /**

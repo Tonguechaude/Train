@@ -9,7 +9,6 @@ public class HorairesTemporaires extends CarteRouge {
 
     public void jouer (Joueur joueur)
     {
-        //a revoir, piocher retire déjà la carte
         int compteurDeTrain = 0;
 
         while (compteurDeTrain < 2)
