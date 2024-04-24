@@ -104,6 +104,7 @@ public abstract class Tuile {
                 return true;
             }
         }
+        joueur.log("Cette tuile est trop loin de votre réseau féroviaire pour y construire un rail");
         return false;
     }
 

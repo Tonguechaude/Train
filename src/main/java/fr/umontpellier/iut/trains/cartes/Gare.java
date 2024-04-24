@@ -33,7 +33,7 @@ public class Gare extends CarteViolette {
                 index ++;
             }
             while(!tuileChoisieValide) {
-                String input = joueur.choisir("Choisissez une tuile (Ville): ", choix, null, false);
+                String input = joueur.choisir("Choisissez une tuile (Ville) où poser votre gare: ", choix, null, false);
                 int indexTuile = Integer.parseInt(input.split(":")[1]);
                 //int indexTuile = Integer.parseInt(input.replaceAll("[^0-9]", ""));
                 // la ligne dessus est assez complexe frero, elle m'a demandé de la recherche en gros replaceAll va remplacer

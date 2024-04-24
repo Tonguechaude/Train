@@ -318,6 +318,7 @@ public class Joueur {
             } else if (choix.startsWith("Ferraille")) {
 
                 removeFerraille(-1); // -1 permet de retirer toute la ferraille de la main
+                finTour = true;
 
             } else if (choix.equals("")) {
 
@@ -330,7 +331,7 @@ public class Joueur {
                 if (carte != null) {
                     //on ne peut jouer une carte Victoire
                     if(carte.getType().equals("Victoire")) {
-                        log("Vous ne pouvez pas jouer une carte <Victoire>");
+                        log("Vous ne pouvez pas jouer une carte Victoire");
                         main.add(carte);
                     } else {
                         this.addArgent(carte.getValeur()); // le joueur gagne la valeur de la carte à la posée
