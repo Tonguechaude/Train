@@ -9,7 +9,6 @@ public class PoseDeRails extends CarteVerte {
 
     @Override
     public void jouer(Joueur joueur) {
-        joueur.addPointDeRails(1);
-        joueur.addFerraille(1);
+        super.jouer(joueur);
     }
 }

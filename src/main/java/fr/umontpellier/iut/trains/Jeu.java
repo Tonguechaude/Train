@@ -218,7 +218,7 @@ public class Jeu implements Runnable {
 
         for(Joueur joueur : joueurs)
         {
-            String position = joueur.choisir("Choisissez une tuile où positionner votre rail de départ",
+            String position = joueur.choisir(String.format("%s veuillez choisir une tuile où positionner votre rail de départ", joueur.getNom()),
                     choixPossibles,null,false);
             getTuile(Integer.parseInt(position.split(":")[1])).ajouterRail(joueur);
         }

@@ -148,6 +148,15 @@ public class Joueur {
             scoreTotal += carte.getPointVictoire();
         }
 
+        for(Carte carte : defausse)
+        {
+            scoreTotal += carte.getPointVictoire();
+        }
+        for(Carte carte : cartesRecues)
+        {
+            scoreTotal += carte.getPointVictoire();
+        }
+
         return scoreTotal;
     }
 
@@ -249,8 +258,10 @@ public class Joueur {
         boolean passerTour = true; //
         boolean finTour = false;
         // Boucle principale
+        List<String> choixPossibles = new ArrayList<>();
+        choixPossibles.add("Ferraille");
         while (!finTour) {
-            List<String> choixPossibles = new ArrayList<>();
+
             for (Carte c : main) {
                 // ajoute les noms de toutes les cartes en main
                 choixPossibles.add(c.getNom());
@@ -297,35 +308,28 @@ public class Joueur {
                 {
                     String indexTuile = choix.split(":")[1];
                     Tuile tuile = jeu.getTuile(Integer.parseInt(indexTuile));
-                        poseDeRail(tuile);
+                    //fonction qui gère la pose de rails
+                    poseDeRail(tuile);
+
                 } else {
                     log(String.format("%s n'a pas assez de points pour poser un rail",this.nom));
                 }
 
-            }
-            else if (choix.equals(""))
-            {
-                // action spéciale pour défausser la ferraille de la main si l'on passe directement notre tour !!
-                if(passerTour)
-                {
-                    List<Bouton> ouiOUnon = Arrays.asList(
-                        new Bouton("oui"),
-                        new Bouton("non")
-                    );
-                    String deffausserFerraille = choisir("voulez vous défausser la feraille de votre main ?",null,ouiOUnon,false);
-                    if(deffausserFerraille.equals("oui"))
-                    {
-                        removeFerraille(-1); // -1 permet de retirer toute la ferraille de la main
-                    }
-                }
+            } else if (choix.startsWith("Ferraille")) {
+
+                removeFerraille(-1); // -1 permet de retirer toute la ferraille de la main
+
+            } else if (choix.equals("")) {
+
                 // terminer le tour
                 finTour = true;
             }
-            else
+            else // jouer une carte de la main
             {
-                // jouer une carte de la main
                 Carte carte = main.retirer(choix);
-                if(carte instanceof CarteJaune) {
+
+                //on ne peut jouer une carte Victoire
+                if(carte.getType().equals("Victoire")) {
                     log("Vous ne pouvez pas jouer une carte <Victoire>");
                     main.add(carte);
                 } else {
@@ -335,7 +339,7 @@ public class Joueur {
                     carte.jouer(this); // exécuter l'action de la carte
                 }
             }
-            passerTour = false;
+            choixPossibles.remove("Ferraille");
         }
         // Finalisation
         listReductions.clear(); //réductions ne durent qu'un tour

@@ -46,7 +46,7 @@ public class UsineDeWagons extends CarteRouge {
                     }
                 }
             }
-            instructions = "Veuillez choisir une carte <TRAIN> de la réserve à ajouter à votre main.";
+            instructions = "Veuillez choisir une carte TRAIN de la réserve à ajouter à votre main.";
             choix = joueur.choisir(instructions,choixPossibles,null,true);
             if(!choix.isEmpty())
             {
@@ -60,7 +60,7 @@ public class UsineDeWagons extends CarteRouge {
             }
         } else
         {
-            joueur.log("Aucune carte <TRAIN> disponible dans votre main, l'action ne peut être réalisée.");
+            joueur.log("Aucune carte TRAIN disponible dans votre main, l'action ne peut être réalisée.");
         }
     }
 }

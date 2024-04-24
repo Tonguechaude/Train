@@ -10,8 +10,7 @@ public class Viaduc extends CarteVerte {
 
     @Override
     public void jouer(Joueur joueur) {
-        joueur.addFerraille(1);
-        joueur.addPointDeRails(1);
+        super.jouer(joueur);
         joueur.getListReductions().add(TypeTerrain.VILLE);
     }
 }
