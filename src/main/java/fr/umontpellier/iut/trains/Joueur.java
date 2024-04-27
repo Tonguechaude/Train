@@ -63,6 +63,17 @@ public class Joueur {
      * Couleur du joueur (utilisé par l'interface graphique)
      */
     private CouleurJoueur couleur;
+    /**
+     * attribut qui immunise (ou pas) le joueur contre l'ajout de ferraille à son deck durant le tour.
+     * false --> le joueur ne reçoit pas de féraille, true --> il peut en recevoir
+     */
+    private boolean recevoirFerraille;
+    /**
+     * attribut pour aider à gérer les cartes à action spéciales (qui durent tout le tour).
+     * Contient le nom des cartes qui ont été jouées pendant le tour, à utiliser avec contains.
+     * (train matinal, ferronerie, cooperation, depotoire..)
+     */
+    private ArrayList<String> listCarteSpeciales;
 
     public Joueur(Jeu jeu, String nom, CouleurJoueur couleur) {
         this.jeu = jeu;
@@ -78,6 +89,8 @@ public class Joueur {
         cartesEnJeu = new ListeDeCartes();
         cartesRecues = new ListeDeCartes();
         listReductions = new HashSet<>();
+        listCarteSpeciales = new ArrayList<>();
+        recevoirFerraille = true;
 
         // créer 7 Train omnibus (non disponibles dans la réserve)
         pioche.addAll(FabriqueListeDeCartes.creerListeDeCartes("Train omnibus", 7));
@@ -108,6 +121,17 @@ public class Joueur {
         return cartesEnJeu;
     }
 
+    public ArrayList<String> getListCarteSpeciales() {
+        return listCarteSpeciales;
+    }
+
+    public void setRecevoirFerraille(boolean trueORfalse) {
+        recevoirFerraille = trueORfalse;
+    }
+
+    public void retirerJetonsRails() {
+        nbJetonsRails--;
+    }
 
     public void setCartesEnJeu(ListeDeCartes cartesEnJeu) {
         this.cartesEnJeu = cartesEnJeu;
@@ -255,7 +279,7 @@ public class Joueur {
     {
         // Initialisation
         jeu.log("<div class=\"tour\">Tour de " + toLog() + "</div>");
-        boolean passerTour = true; //
+
         boolean finTour = false;
         // Boucle principale
         List<String> choixPossibles = new ArrayList<>();
@@ -287,7 +311,7 @@ public class Joueur {
                 if (carte != null) {
                     if(isRichEnough(carte.getPrix())) //si le joueur a assez d'argent pour acheter la carte
                     {
-                        if (cartesEnJeu.getCarte("Train matinal") != null) //gère le train matinal
+                        if (listCarteSpeciales.contains("Train matinal")) //gère le train matinal
                         {
                             trainMatinal(carte);
                         }
@@ -348,9 +372,11 @@ public class Joueur {
             choixPossibles.clear();
         }
         // Finalisation
-        listReductions.clear(); //réductions ne durent qu'un tour
         argent = 0; // l'argent est réinitialisé chaque tour
-        pointsRails = 0;
+        pointsRails = 0; // les points de rails aussi
+        recevoirFerraille = true;
+        listReductions.clear(); //réductions ne durent qu'un tour
+        listCarteSpeciales.clear();
 
         // défausser toutes les cartes
         defausse.addAll(main);
@@ -571,10 +597,7 @@ public class Joueur {
      * @param nbFerraile représente le nombre de cartes ferraille à manipuler
      */
     public void addFerraille(int nbFerraile) {
-
-        Cooperation checkCooperation = (Cooperation) cartesEnJeu.getCarte("Coopération");
-        // condition pour les cartes depotoires et cooperation qui n'ajoutent pas la ferraille
-        if (cartesEnJeu.getCarte("Dépotoire") == null && (checkCooperation == null || (checkCooperation != null && !checkCooperation.getEstActif())))
+        if(recevoirFerraille)
         {
             for(int i = 0 ; i < nbFerraile; i++) {
                 if(jeu.getReserve().get("Ferraille").isEmpty()){
@@ -643,11 +666,10 @@ public class Joueur {
         {
                 nbJetonsRails--;
                 pointsRails--;
-                if(!tuile.estVide())
+                if(!tuile.estVide() && !listCarteSpeciales.contains("Coopération"))
                 {
                     addFerraille(1);
                 }
-            // {-} douteux, si bug, à vérifier
             addArgent(-tuile.surcoutPoseDeRail(this));
             tuile.ajouterRail(this);
         }

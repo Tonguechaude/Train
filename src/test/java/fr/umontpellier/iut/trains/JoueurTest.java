@@ -151,13 +151,14 @@ public class JoueurTest extends BaseTestClass
 
         Carte c = new BureauDuChefDeGare();
         Carte fondPioche = new Ferraille();
+        Carte echangeur = new Echangeur();
         Carte omni1 = new TrainOmnibus();
         Carte expr = new TrainExpress();
 
-        addAll(main, c, expr);
+        addAll(main, c, expr, echangeur);
         addAll(pioche, fondPioche);
 
-        jouerTourPartiel("Bureau du chef de gare", "Échangeur", "Train express");
+        jouerTourPartiel("Train express","Bureau du chef de gare", "Échangeur", "Train express");
 
         assertTrue(containsReferences(main));
         assertTrue(containsReferencesInOrder(pioche, expr, fondPioche));

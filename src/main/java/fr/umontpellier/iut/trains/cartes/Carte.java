@@ -71,4 +71,8 @@ public abstract class Carte {
 
 
     public abstract String getType();
+
+    public String getSecondType() {
+        return "";
+    }
 }

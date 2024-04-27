@@ -37,17 +37,14 @@ public class TuileVille extends Tuile {
 
         //VoieSouterraine
         int surcout = super.surcoutPoseDeRail(joueur);
-        if (surcout == -1)
+
+        if (surcout == -1 || joueur.getListReductions().contains(TypeTerrain.VILLE))
         {
             return 0;
         }
         else
         {
             surcout += 1;
-        }
-
-        if(!joueur.getListReductions().contains(TypeTerrain.VILLE) && this.nbGaresPosees > 0)
-        {
             surcout += this.nbGaresPosees;
         }
         return surcout;

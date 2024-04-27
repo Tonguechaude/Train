@@ -6,9 +6,9 @@ import fr.umontpellier.iut.trains.Joueur;
 import java.util.Arrays;
 import java.util.List;
 
-public class TrainDeTourisme extends CarteBleu {
+public class TrainDeTourisme extends CarteDoubleType {
     public TrainDeTourisme() {
-        super("Train de tourisme",4,1);
+        super("Train de tourisme",4,1, "Train", "Action");
     }
 
     @Override

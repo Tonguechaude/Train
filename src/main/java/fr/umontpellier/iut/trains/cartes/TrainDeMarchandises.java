@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TrainDeMarchandises extends CarteBleu {
+public class TrainDeMarchandises extends CarteDoubleType {
     public TrainDeMarchandises() {
-        super("Train de marchandises",4,1);
+        super("Train de marchandises",4,1, "Train", "Action");
     }
     //A TESTER : si le joueur passe directement
 

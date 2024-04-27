@@ -20,16 +20,9 @@ public class HorairesEstivaux extends CarteRouge {
         if (input.equals("oui"))
         {
             joueur.addArgent(3);
-            joueur.getCartesEnJeu().retirer(this.getNom()); // douteux, si deux cartes horaire estivaux ont été jouées, à voir
+            joueur.getCartesEnJeu().retirer(this.getNom());
             joueur.getJeu().getCartesEcartees().add(this);
             joueur.retirerCarteMain(this);
         }
-        else
-        {
-            return;
-        }
-
-
-
     }
 }

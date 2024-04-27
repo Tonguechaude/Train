@@ -5,7 +5,6 @@ import fr.umontpellier.iut.trains.plateau.TypeTerrain;
 
 public class Cooperation extends CarteVerte {
 
-    private boolean estActif = false;
     public Cooperation() {
         super("Coopération", 5, 0);
     }
@@ -14,11 +13,6 @@ public class Cooperation extends CarteVerte {
     {
         super.jouer(joueur);
         joueur.getListReductions().add(TypeTerrain.JOUEUR);
-        estActif = true;
-    }
-
-    public boolean getEstActif()
-    {
-        return estActif;
+        joueur.getListCarteSpeciales().add(getNom());
     }
 }

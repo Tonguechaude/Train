@@ -2,9 +2,9 @@ package fr.umontpellier.iut.trains.cartes;
 
 import fr.umontpellier.iut.trains.Joueur;
 
-public class TGV extends CarteBleu {
+public class TGV extends CarteDoubleType {
     public TGV() {
-        super("TGV",2,1);
+        super("TGV",2,1,"Train", "Action");
     }
 
     @Override

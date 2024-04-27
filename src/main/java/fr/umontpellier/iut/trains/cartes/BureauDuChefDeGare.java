@@ -18,13 +18,13 @@ public class BureauDuChefDeGare extends CarteRouge {
         List<String> nomsCartesAction = new ArrayList<>();
 
         for (Carte c : joueur.getMain()) {
-            if (c.getType().equals("Action")) {
+            if (c.getType().equals("Action") || c.getSecondType().equals("Action")) {
                 cartesAction.add(c);
                 nomsCartesAction.add(c.getNom());
             }
         }
 
-        String choixCarte = joueur.choisir("Choisissez une carte d'action que vous avez en main :", nomsCartesAction, null, false);
+        String choixCarte = joueur.choisir("Choisissez une carte de type Action que vous avez en main :", nomsCartesAction, null, false);
         Carte carteChoisie = cartesAction.getCarte(choixCarte);
         carteChoisie.jouer(joueur); // Exécuter l'effet de la carte choisie
 

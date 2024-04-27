@@ -26,9 +26,9 @@ public abstract class CarteVerte extends Carte
     @Override
     public void jouer(Joueur joueur) {
         int compteur = 0;
-        for(Carte c : joueur.getCartesEnJeu())
+        for(String nomCarte : joueur.getListCarteSpeciales())
         {
-            if(c.getNom().equals("Ferronnerie"))
+            if(nomCarte.equals("Ferronnerie"))
             {
                 compteur++;
             }
