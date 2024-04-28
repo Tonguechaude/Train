@@ -13,17 +13,6 @@ public class CentreDeRenseignements extends CarteRouge {
 
     public void jouer (Joueur joueur)
     {
-
-       /* if (joueur.getPioche().size() < 4)
-        {
-            List<Carte> carteRetournees2 = new ArrayList<>();
-            for (Carte c : joueur.getPioche())
-            {
-                carteRetournees2.add(c);
-            }
-        }*/
-
-
         ListeDeCartes cartesRetournees = new ListeDeCartes();
         cartesRetournees.addAll(joueur.piocher(4));
         List<Bouton> listeBouton = new ArrayList<>();
@@ -39,34 +28,17 @@ public class CentreDeRenseignements extends CarteRouge {
 
         if(!choixMain.equals(""))
         {
+            listeBouton.remove(new Bouton(choixMain));
             Carte cartechoisie = cartesRetournees.getCarte(choixMain);
             joueur.ajouterCarteMain(cartechoisie);
             cartesRetournees.remove(cartechoisie);
 
-            /*Carte carteMain = null;
-            for (Carte carte : cartesRetournees)
-            {
-                if (carte.getNom().equals(choixMain))
-                {
-                    carteMain = carte;
-                }
-            }
-            if (carteMain != null)
-            {
-                joueur.ajouterCarteMain(carteMain);
-                cartesRetournees.remove(carteMain);
-            }*/
         }
 
         while (!cartesRetournees.isEmpty()) {
             String choixReplacer = joueur.choisir("Choisissez une carte à replacer sur la pioche :", null, listeBouton, false);
-            /*Carte carteReplacer = null;
 
-            for (Carte carte : cartesRetournees) {
-                if (carte.getNom().equals(choixReplacer)) {
-                    carteReplacer = carte;
-                }
-            }*/
+            listeBouton.remove(new Bouton(choixReplacer));
             Carte carteReplacer = cartesRetournees.getCarte(choixReplacer);
             joueur.getPioche().add(0, carteReplacer);
             cartesRetournees.remove(carteReplacer);

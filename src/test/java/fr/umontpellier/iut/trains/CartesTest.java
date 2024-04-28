@@ -3444,4 +3444,32 @@ public class CartesTest extends BaseTestClass {
         assertEquals(0, getPointsRails(joueur));
     }
 
+    @Test
+    void test_centreDeRenseignement_remettrePioche_carteChoisie()
+    {
+        setupJeu();
+        initialisation();
+
+        Carte c = new CentreDeRenseignements();
+
+        Carte omni1 = new TrainOmnibus();
+        Carte pdg = new PersonnelDeGare();
+        Carte v = new Viaduc();
+        Carte omni2 = new TrainOmnibus();
+        Carte fondPioche = new Ferraille();
+
+        addAll(pioche, omni1, pdg, v, omni2, fondPioche);
+        addAll(main,c);
+
+        jouerTourPartiel("Centre de renseignements", "Personnel de gare", "Personnel de gare", "Viaduc", "Train omnibus", "Train omnibus");
+
+        assertTrue(containsReferences(main,pdg));
+        assertTrue(containsReferencesInOrder(pioche,omni2,omni1,v,fondPioche));
+        assertTrue(containsReferences(defausse));
+        assertTrue(containsReferences(cartesEnJeu,c));
+        assertTrue(containsReferences(cartesRecues));
+        assertEquals(0, getPointsRails(joueur));
+        assertEquals(1, getArgent(joueur));
+    }
+
 }
