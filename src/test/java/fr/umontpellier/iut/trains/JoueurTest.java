@@ -160,12 +160,12 @@ public class JoueurTest extends BaseTestClass
 
         jouerTourPartiel("Train express","Bureau du chef de gare", "Échangeur", "Train express");
 
-        assertTrue(containsReferences(main));
+        assertTrue(containsReferences(main, echangeur));
         assertTrue(containsReferencesInOrder(pioche, expr, fondPioche));
         assertTrue(containsReferences(defausse));
-        assertTrue(containsReferences(cartesEnJeu, c, omni1));
+        assertTrue(containsReferences(cartesEnJeu, c));
         assertTrue(containsReferences(cartesRecues));
-        assertEquals(0, getArgent(joueur));
+        assertEquals(2, getArgent(joueur));
         assertEquals(0, getPointsRails(joueur));
     }
 

@@ -12,19 +12,31 @@ public class TrainDeMarchandises extends CarteDoubleType {
     //A TESTER : si le joueur passe directement
 
     @Override
-    public void jouer(Joueur joueur) {
+    public void jouer(Joueur joueur)
+    {
+
         List<String> choixPossibles = new ArrayList<>();
-        int nbFerrailleEnMain = joueur.getMain().count("Ferraille");
-        for(int i = 1 ; i <= nbFerrailleEnMain ; i++) {
-            choixPossibles.add("Ferraille");
+
+        for(String nomCarte : joueur.getNomsCartes(joueur.getMain()))
+        {
+            if(nomCarte.equals("Ferraille"))
+            {
+                choixPossibles.add(nomCarte);
+            }
         }
-        String isntructions = "Veuillez choisir une carte FERRAILLE à retirer de votre main, ou passez pour terminer l'effet de la carte.";
-        String choix = joueur.choisir(isntructions,choixPossibles,null,true);
-        while(choixPossibles.contains(choix) || !choix.isEmpty()) {
-            choixPossibles.remove(choix);
-            joueur.removeFerraille(1);
-            joueur.ajouterArgent(1);
-            choix = joueur.choisir(isntructions,choixPossibles,null,true);
+
+        if(!choixPossibles.isEmpty())
+        {
+            String instructions = "Veuillez choisir une carte FERRAILLE à retirer de votre main, ou passez pour terminer l'effet de la carte.";
+            String choix = joueur.choisir(instructions,choixPossibles,null,true);
+            while(!choixPossibles.isEmpty() && !choix.isEmpty())
+            {
+                choixPossibles.remove(choix);
+                joueur.removeFerraille(1);
+                joueur.ajouterArgent(1);
+                choix = joueur.choisir(instructions,choixPossibles,null,true);
+            }
         }
+
     }
 }
