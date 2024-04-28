@@ -12,23 +12,40 @@ public class BureauDuChefDeGare extends CarteRouge {
     }
 
     @Override
-    public void jouer(Joueur joueur) {
+    public void jouer(Joueur joueur)
+    {
 
         ListeDeCartes cartesAction = new ListeDeCartes();
         List<String> nomsCartesAction = new ArrayList<>();
 
-        for (Carte c : joueur.getMain()) {
-            if (c.getType().equals("Action") || c.getSecondType().equals("Action")) {
+        for (Carte c : joueur.getMain())
+        {
+            if (c.getType().equals("Action") || c.getSecondType().equals("Action"))
+            {
                 cartesAction.add(c);
                 nomsCartesAction.add(c.getNom());
             }
         }
 
         String choixCarte = joueur.choisir("Choisissez une carte de type Action que vous avez en main :", nomsCartesAction, null, false);
-        Carte carteChoisie = cartesAction.getCarte(choixCarte);
-        carteChoisie.jouer(joueur); // Exécuter l'effet de la carte choisie
+
+        if(choixCarte != null)
+        {
+            Carte carteChoisie = cartesAction.getCarte(choixCarte);
+            carteChoisie.jouer(joueur); // Exécuter l'effet de la carte choisie
 
 
+            //gérer horaires estivaux
+            //si le choix est horaires estivaux et que la carte à été écartée, il faut remettre les cartes au bon endroit
+            if(!joueur.getJeu().getCartesEcartees().isEmpty() && choixCarte.equals("Horaires estivaux") &&
+                    joueur.getJeu().getCartesEcartees().get(0).getNom().equals("Horaires estivaux"))
+            {
+                // remettre horaires estivaux dans la main du joueur en la retirant des cartes écartées
+                joueur.getMain().add(joueur.getJeu().getCartesEcartees().remove(0));
+                // mettre le chef de gare dans les cartes écartées
+                joueur.getJeu().getCartesEcartees().add(joueur.getCartesEnJeu().retirer("Bureau du chef de gare"));
+            }
+        }
     }
 }
 

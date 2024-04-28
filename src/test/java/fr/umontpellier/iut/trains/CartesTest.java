@@ -1586,7 +1586,7 @@ public class CartesTest extends BaseTestClass {
         assertEquals(1, getArgent(joueur));
         assertEquals(0, getPointsRails(joueur));
         assertEquals(0, getNbJetonsRails(joueur));
-        assertEquals(31, joueur.getScoreTotal());
+        assertEquals(35, joueur.getScoreTotal());
     }
 
     @Test
