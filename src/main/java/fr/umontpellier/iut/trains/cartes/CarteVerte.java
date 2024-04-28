@@ -33,7 +33,7 @@ public abstract class CarteVerte extends Carte
                 compteur++;
             }
         }
-        joueur.addArgent(compteur * 2);
+        joueur.ajouterArgent(compteur * 2);
         joueur.addFerraille(1);
         joueur.addPointDeRails(1);
     }

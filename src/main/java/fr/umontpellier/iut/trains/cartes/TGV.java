@@ -11,7 +11,7 @@ public class TGV extends CarteDoubleType {
     public void jouer(Joueur joueur) {
         if(joueur.getCartesEnJeu().getCarte("Train omnibus") != null)
         {
-            joueur.addArgent(1);
+            joueur.ajouterArgent(1);
         }
         joueur.getJeu().log(String.format("%s reçoit 1 d'argent.", joueur.getNom()));
     }

@@ -521,7 +521,7 @@ public class JoueurTest extends BaseTestClass
         setupJeu("Viaduc");
         initialisation();
         tuiles.get(23).ajouterRail(joueur);
-        ((TuileVille) tuiles.get(24)).addGare();
+        ((TuileVille) tuiles.get(24)).ajouterGare();
 
         Carte c = new PoseDeRails();
         Carte epx = new TrainExpress();
@@ -544,8 +544,8 @@ public class JoueurTest extends BaseTestClass
         setupJeu("Viaduc");
         initialisation();
         tuiles.get(32).ajouterRail(joueur);
-        ((TuileVille) tuiles.get(42)).addGare();
-        ((TuileVille) tuiles.get(42)).addGare();
+        ((TuileVille) tuiles.get(42)).ajouterGare();
+        ((TuileVille) tuiles.get(42)).ajouterGare();
 
         Carte c = new PoseDeRails();
         Carte epx = new TrainExpress();
@@ -569,9 +569,9 @@ public class JoueurTest extends BaseTestClass
         setupJeu("Viaduc");
         initialisation();
         tuiles.get(20).ajouterRail(joueur);
-        ((TuileVille) tuiles.get(29)).addGare();
-        ((TuileVille) tuiles.get(29)).addGare();
-        ((TuileVille) tuiles.get(29)).addGare();
+        ((TuileVille) tuiles.get(29)).ajouterGare();
+        ((TuileVille) tuiles.get(29)).ajouterGare();
+        ((TuileVille) tuiles.get(29)).ajouterGare();
 
         Carte c = new PoseDeRails();
         Carte epx = new TrainExpress();
@@ -595,7 +595,7 @@ public class JoueurTest extends BaseTestClass
         setupJeu("Viaduc");
         initialisation();
         tuiles.get(42).ajouterRail(joueur);
-        ((TuileVille) tuiles.get(42)).addGare();
+        ((TuileVille) tuiles.get(42)).ajouterGare();
 
         Carte c = new PoseDeRails();
         Carte epx = new TrainExpress();
@@ -640,9 +640,9 @@ public class JoueurTest extends BaseTestClass
         setupJeu("Voie souterraine");
         initialisation();
         tuiles.get(20).ajouterRail(joueur);
-        ((TuileVille) tuiles.get(29)).addGare();
-        ((TuileVille) tuiles.get(29)).addGare();
-        ((TuileVille) tuiles.get(29)).addGare();
+        ((TuileVille) tuiles.get(29)).ajouterGare();
+        ((TuileVille) tuiles.get(29)).ajouterGare();
+        ((TuileVille) tuiles.get(29)).ajouterGare();
 
         Carte c = new VoieSouterraine();
         Carte epx = new TrainExpress();

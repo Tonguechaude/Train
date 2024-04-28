@@ -68,7 +68,7 @@ public class TuileVille extends Tuile {
         }
     }
 
-    public void addGare ()
+    public void ajouterGare ()
     {
         nbGaresPosees++;
     }

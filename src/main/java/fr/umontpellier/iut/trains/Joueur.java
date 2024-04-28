@@ -4,7 +4,6 @@ import java.util.*;
 
 import fr.umontpellier.iut.trains.cartes.*;
 import fr.umontpellier.iut.trains.plateau.Tuile;
-import fr.umontpellier.iut.trains.plateau.TuileVille;
 import fr.umontpellier.iut.trains.plateau.TypeTerrain;
 
 public class Joueur {
@@ -129,7 +128,7 @@ public class Joueur {
         recevoirFerraille = trueORfalse;
     }
 
-    public void retirerJetonsRails() {
+    public void retirerJetonRail() {
         nbJetonsRails--;
     }
 
@@ -325,7 +324,7 @@ public class Joueur {
                             log("Reçoit " + carte); // affichage dans le log
                             cartesRecues.add(carte);
                         }
-                        addArgent(-carte.getPrix());
+                        ajouterArgent(-carte.getPrix());
                     }
                 }
             } else if (choix.startsWith("TUILE:"))
@@ -360,7 +359,7 @@ public class Joueur {
                         log("Vous ne pouvez pas jouer une carte Victoire");
                         main.add(carte);
                     } else {
-                        this.addArgent(carte.getValeur()); // le joueur gagne la valeur de la carte à la posée
+                        this.ajouterArgent(carte.getValeur()); // le joueur gagne la valeur de la carte à la posée
                         log("Joue " + carte); // affichage dans le log
                         cartesEnJeu.add(carte); // mettre la carte en jeu
                         carte.jouer(this); // exécuter l'action de la carte
@@ -535,7 +534,7 @@ public class Joueur {
     public void addPtVictoire(int score) {
         scoreCourant += score;
     }
-    public void addArgent(int argent) {
+    public void ajouterArgent(int argent) {
         this.argent += argent;
     }
     public void addPointDeRails(int nb) {
@@ -670,7 +669,7 @@ public class Joueur {
                 {
                     addFerraille(1);
                 }
-            addArgent(-tuile.surcoutPoseDeRail(this));
+            ajouterArgent(-tuile.surcoutPoseDeRail(this));
             tuile.ajouterRail(this);
         }
     }

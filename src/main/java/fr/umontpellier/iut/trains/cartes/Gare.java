@@ -43,7 +43,7 @@ public class Gare extends CarteViolette {
 
                 if (tuileChoisie.peutPoserGare(joueur)) {
                     joueur.getJeu().enleverJetonGare();
-                    tuileChoisie.addGare();
+                    tuileChoisie.ajouterGare();
                     tuileChoisieValide = true;
                 } else {
                     joueur.log("Impossible de poser une gare ici.");

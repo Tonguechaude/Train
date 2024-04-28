@@ -1,6 +1,5 @@
 package fr.umontpellier.iut.trains.cartes;
 
-import fr.umontpellier.iut.trains.Bouton;
 import fr.umontpellier.iut.trains.Joueur;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class ParcDAttractions extends CarteRouge {
             String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type <TRAIN> dont vous voulez recevoir sa valeur.";
             String nomCarteChoisie = joueur.choisir(instructions, choix, null, true);
 
-            joueur.addArgent(joueur.getCartesEnJeu().getCarte(nomCarteChoisie).getValeur());
+            joueur.ajouterArgent(joueur.getCartesEnJeu().getCarte(nomCarteChoisie).getValeur());
         }
     }
 }

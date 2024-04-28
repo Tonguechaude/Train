@@ -27,7 +27,7 @@ public class PersonnelDeGare extends CarteRouge {
                 joueur.getMain().add(joueur.piocher());
                 break;
             case "argent":
-                joueur.addArgent(1);
+                joueur.ajouterArgent(1);
                 break;
             case "ferraille":
                 joueur.removeFerraille(1);
