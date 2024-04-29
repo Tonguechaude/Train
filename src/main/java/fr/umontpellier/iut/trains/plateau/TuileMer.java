@@ -9,6 +9,7 @@ import fr.umontpellier.iut.trains.Joueur;
 public class TuileMer extends Tuile {
     public TuileMer() {
         super();
+        typeTerrain = TypeTerrain.MER;
     }
 
     @Override

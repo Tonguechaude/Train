@@ -14,6 +14,7 @@ public class TuileEtoile extends Tuile {
     public TuileEtoile(int valeur) {
         super();
         this.valeur = valeur;
+        typeTerrain = TypeTerrain.ETOILE;
     }
 
     @Override

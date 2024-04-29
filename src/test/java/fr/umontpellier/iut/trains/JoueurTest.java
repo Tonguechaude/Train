@@ -6,12 +6,6 @@ import fr.umontpellier.iut.trains.cartes.*;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-
-
-
-
-
-
 public class JoueurTest extends BaseTestClass
 {
 

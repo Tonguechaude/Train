@@ -15,25 +15,16 @@ public class TuileVille extends Tuile {
      */
     private int nbGaresPosees;
 
+
     public TuileVille(int taille) {
         super();
         this.nbGaresMax = taille;
         this.nbGaresPosees = 0;
+        typeTerrain = TypeTerrain.VILLE;
     }
 
     @Override
     public int surcoutPoseDeRail(Joueur joueur) {
-        /*
-        //plus possible de poser une gare
-        if(nbGaresPosees == nbGaresMax)
-        {
-            joueur.getJeu().log("vous ne pouvez pas poser de gare sur cette case car le nombre maximal a déjà été atteint");
-            return -1;
-        } else if (joueur.getJeu().getNbJetonsGare() < 1)
-        {
-            joueur.getJeu().log("toutes les gares ont déjà été posées");
-            return -1;
-        }*/
 
         //VoieSouterraine
         int surcout = super.surcoutPoseDeRail(joueur);

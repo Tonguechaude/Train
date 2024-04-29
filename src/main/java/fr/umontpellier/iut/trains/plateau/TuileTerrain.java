@@ -6,28 +6,24 @@ import fr.umontpellier.iut.trains.Joueur;
  * Classe représentant une tuile plaine, fleuve ou montagne.
  */
 public class TuileTerrain extends Tuile {
-    /**
-     * Type de terrain de la tuile ({@code PLAINE}, {@code FLEUVE} ou {@code MONTAGNE})
-     */
-    private TypeTerrain type;
 
     public TuileTerrain(TypeTerrain type) {
         super();
-        this.type = type;
+        typeTerrain = type;
     }
     @Override
     public int surcoutPoseDeRail(Joueur joueur) {
 
         int surcout = super.surcoutPoseDeRail(joueur);
 
-        if(surcout == -1 && type.valeurTerrain() != -1)
+        if(surcout == -1 && typeTerrain.valeurTerrain() != -1)
         {
             return 0;
         }
 
-        if(!joueur.getListReductions().contains(type))
+        if(!joueur.getListReductions().contains(typeTerrain))
         {
-            surcout += type.valeurTerrain();
+            surcout += typeTerrain.valeurTerrain();
         }
 
         return surcout;

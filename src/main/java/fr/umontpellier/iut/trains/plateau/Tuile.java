@@ -15,6 +15,8 @@ public abstract class Tuile {
      * infranchissable)
      */
     private ArrayList<Tuile> voisines;
+
+    protected TypeTerrain typeTerrain;
     /**
      * Ensemble des joueurs qui ont posé un rail sur la tuile
      */
@@ -192,5 +194,9 @@ public abstract class Tuile {
             map.put("nbGares", nbGares);
         }
         return map;
+    }
+
+    public TypeTerrain getType() {
+        return typeTerrain;
     }
 }

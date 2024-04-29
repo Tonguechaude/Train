@@ -4,6 +4,7 @@ import fr.umontpellier.iut.trains.Bouton;
 import fr.umontpellier.iut.trains.Joueur;
 import fr.umontpellier.iut.trains.plateau.Tuile;
 import fr.umontpellier.iut.trains.plateau.TuileVille;
+import fr.umontpellier.iut.trains.plateau.TypeTerrain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Gare extends CarteViolette {
             int index = 0;
             for ( Tuile tuile : tuiles)
             {
-                if(tuile instanceof TuileVille)
+                if(tuile.getType().equals(TypeTerrain.VILLE))
                 {
                     choix.add("TUILE:" + index);
                 }
