@@ -34,7 +34,7 @@ public class GameServer {
 
     public static void main(String[] args) throws IOException, DeploymentException {
         // Noms des joueurs (définit le nombre de joueurs de la partie)
-        String[] nomsJoueurs = { "Guybrush", "Largo" };
+        String[] nomsJoueurs = { "Guybrush", "Largo", "Ahziz" };
 
         // Liste des cartes à utiliser :
         //String[] nomsCartes = {"Aiguillage", "Passage en gare", "Salle de contrôle"};

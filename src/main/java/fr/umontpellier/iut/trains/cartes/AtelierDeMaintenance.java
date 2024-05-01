@@ -26,7 +26,7 @@ public class AtelierDeMaintenance extends CarteRouge {
         }
         else
         {
-            String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type TRAIN que vous voulez devoilez";
+            String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type TRAIN que vous voulez dévoiler";
             String nomCarteChoisie = joueur.choisir(instructions, choix, null, false);
 
             joueur.getJeu().log(String.format("Le joueur %s devoile la carte %s !", joueur.getNom(), nomCarteChoisie));

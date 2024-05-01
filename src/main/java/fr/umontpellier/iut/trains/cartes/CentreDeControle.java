@@ -23,7 +23,7 @@ public class CentreDeControle extends CarteRouge {
 
         }
 
-        String input = joueur.choisir("Voulez-vous faire ceci ?", null, listeBouton, true);
+        String input = joueur.choisir("Voulez-vous faire ceci ?", null, listeBouton, false);
 
         Carte pioche2 = joueur.piocher();
 
