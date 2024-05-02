@@ -34,7 +34,7 @@ public class GameServer {
 
     public static void main(String[] args) throws IOException, DeploymentException {
         // Noms des joueurs (définit le nombre de joueurs de la partie)
-        String[] nomsJoueurs = { "Guybrush", "Largo", "Ahziz" };
+        String[] nomsJoueurs = { "Guybrush", "Gay Largo", "Ahziz" };
 
         // Liste des cartes à utiliser :
         //String[] nomsCartes = {"Aiguillage", "Passage en gare", "Salle de contrôle"};
@@ -44,7 +44,7 @@ public class GameServer {
          Collections.shuffle(cartesPreparation);
          String[] nomsCartes = cartesPreparation.subList(0, 8).toArray(new String[0]);
 
-        jeu = new JeuWebsocket(nomsJoueurs, nomsCartes, Plateau.OSAKA);
+        jeu = new JeuWebsocket(nomsJoueurs, nomsCartes, Plateau.TOKYO);
 
         // SERVEUR HTTP (pour l'interface graphique)
         // Crée un contexte pour les requêtes HTTP, attache le handler et démarre le

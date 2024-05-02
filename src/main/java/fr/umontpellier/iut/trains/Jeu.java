@@ -267,15 +267,15 @@ public class Jeu implements Runnable {
      * @return le nombre de listes vides dans la réserve
      */
     public int nbListVides() {
-        int comp = 0;
-        for(ListeDeCartes L : reserve.values())
+        int compteur = 0;
+        for(String nomCarteListe : reserve.keySet())
         {
-            if(!L.get(0).getNom().equals("Ferraille") && L.isEmpty())
+            if(!nomCarteListe.equals("Ferraille") && reserve.get(nomCarteListe).isEmpty())
             {
-                comp++;
+                compteur++;
             }
         }
-        return comp;
+        return compteur;
     }
 
     /**
