@@ -14,15 +14,18 @@ public class Echangeur extends CarteRouge {
     {
         ArrayList<String> choix = new ArrayList<>();
 
-        for (Carte c : joueur.getCartesEnJeu()) // récupération de toutes les cartes de type Trains en jeu
+        for (Carte c : joueur.getCartesEnJeu()) // récupération de toutes les cartes de type Train en jeu
         {
-            if (c.getType().equals("Train") && !choix.contains(c.getNom())) //ajout des cartes trains dans la liste de choix
+            if (c.getType().equals("Train") && !choix.contains(c.getNom())) //ajout des cartes train dans la liste de choix
             {
                 choix.add(c.getNom());
             }
         }
         String nomCarteChoisie = joueur.choisir("Choisissez une carte Train ", choix, null, true);
-        joueur.getPioche().add(0, joueur.getCartesEnJeu().retirer(nomCarteChoisie));
+        if(!nomCarteChoisie.isEmpty()) {
+            joueur.getPioche().add(0, joueur.getCartesEnJeu().retirer(nomCarteChoisie));
+        }
+
 
     }
 
