@@ -11,7 +11,4 @@ public class Ferronnerie extends CarteRouge {
     {
         joueur.getListCarteSpeciales().add(getNom());
     }
-
-
-
 }

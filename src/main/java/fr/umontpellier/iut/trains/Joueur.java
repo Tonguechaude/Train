@@ -746,8 +746,4 @@ public class Joueur {
         return nomsCartes;
     }
 
-    public void addDefausse (Carte carte)
-    {
-        defausse.add(carte);
-    }
 }

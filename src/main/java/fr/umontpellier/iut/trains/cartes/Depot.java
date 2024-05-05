@@ -1,6 +1,5 @@
 package fr.umontpellier.iut.trains.cartes;
 
-import ch.qos.logback.core.joran.action.NewRuleAction;
 import fr.umontpellier.iut.trains.Bouton;
 import fr.umontpellier.iut.trains.Joueur;
 

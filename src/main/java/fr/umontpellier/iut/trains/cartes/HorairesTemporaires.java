@@ -2,7 +2,8 @@ package fr.umontpellier.iut.trains.cartes;
 
 import fr.umontpellier.iut.trains.Joueur;
 
-public class HorairesTemporaires extends CarteRouge {
+public class HorairesTemporaires extends CarteRouge
+{
     public HorairesTemporaires() {
         super("Horaires temporaires", 5,0);
     }

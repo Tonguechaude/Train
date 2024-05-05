@@ -3,14 +3,15 @@ package fr.umontpellier.iut.trains.cartes;
 import fr.umontpellier.iut.trains.Joueur;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Echangeur extends CarteRouge {
+public class Echangeur extends CarteRouge
+{
+
     public Echangeur() {
         super("Échangeur", 3,1);
     }
 
-   public void jouer (Joueur joueur)
+    public void jouer (Joueur joueur)
     {
         ArrayList<String> choix = new ArrayList<>();
 
@@ -26,5 +27,4 @@ public class Echangeur extends CarteRouge {
             joueur.getPioche().add(0, joueur.getCartesEnJeu().retirer(nomCarteChoisie));
         }
     }
-
 }
