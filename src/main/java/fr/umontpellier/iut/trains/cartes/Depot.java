@@ -33,6 +33,7 @@ public class Depot extends CarteRouge {
             {
                 String input = joueur.choisir("Quelle carte souhaitez vous défausser ? ", null, listeChoix, false);
                 joueur.defausserCarte(joueur.getMain().getCarte(input));
+                listeChoix.remove(new Bouton(input));
             }
         }
     }
