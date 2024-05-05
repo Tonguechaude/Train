@@ -21,7 +21,7 @@ public class ParcDAttractions extends CarteRouge {
         }
         if (choix.isEmpty()) //si aucune carte train en jeu, la carte ne fait rien
         {
-            joueur.getJeu().log("Aucune cartes TRAIN en jeu, vous recevez 1 d'argent (carte Parc d'attractions).");
+            joueur.getJeu().log("Aucune carte de type TRAIN en jeu, vous recevez 1 d'argent (carte Parc d'attractions).");
         } else
         {
             String instructions = "Entrez le nom ou cliquez sur une carte en jeu de type <TRAIN> dont vous voulez recevoir sa valeur.";

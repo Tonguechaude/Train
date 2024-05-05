@@ -22,7 +22,7 @@ public class Echangeur extends CarteRouge
                 choix.add(c.getNom());
             }
         }
-        String nomCarteChoisie = joueur.choisir("Choisissez une carte Train ", choix, null, true);
+        String nomCarteChoisie = joueur.choisir("Choisissez une carte de type Train ", choix, null, true);
         if(!nomCarteChoisie.isEmpty()) {
             joueur.getPioche().add(0, joueur.getCartesEnJeu().retirer(nomCarteChoisie));
         }

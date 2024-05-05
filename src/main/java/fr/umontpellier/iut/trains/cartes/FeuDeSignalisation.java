@@ -23,7 +23,7 @@ public class FeuDeSignalisation extends CarteRouge
                     new Bouton("Oui !", "oui"),
                     new Bouton("Non !", "non"));
             joueur.log(piocher.getNom());
-            String input = joueur.choisir("Voulez vous la défausser ?", null, choix, false);
+            String input = joueur.choisir("Voulez-vous la défausser ?", null, choix, false);
             if (input.equals("oui"))
             {
                 joueur.getDefausse().add(piocher);
@@ -35,7 +35,7 @@ public class FeuDeSignalisation extends CarteRouge
         }
         else
         {
-            joueur.log("aucune carte disponibles");
+            joueur.log("aucune carte disponible");
         }
     }
 }
