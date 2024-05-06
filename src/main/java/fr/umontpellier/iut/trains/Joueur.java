@@ -296,7 +296,8 @@ public class Joueur {
                     choixPossibles.add("ACHAT:" + nomCarte);
             }
 
-            for (int i = 0; i < jeu.getTuiles().size(); i++) {
+            for (int i = 0; i < jeu.getTuiles().size(); i++)
+            {
                 // ajoute les indexes des tuiles dans les choix possibles pour la pose de RAILS (non de gare)
                     choixPossibles.add("TUILE:" + i);
             }
@@ -745,8 +746,4 @@ public class Joueur {
         return nomsCartes;
     }
 
-    public void addDefausse (Carte carte)
-    {
-        defausse.add(carte);
-    }
 }

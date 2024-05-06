@@ -1,6 +1,5 @@
 package fr.umontpellier.iut.trains.cartes;
 
-import ch.qos.logback.core.joran.action.NewRuleAction;
 import fr.umontpellier.iut.trains.Bouton;
 import fr.umontpellier.iut.trains.Joueur;
 
@@ -34,6 +33,7 @@ public class Depot extends CarteRouge {
             {
                 String input = joueur.choisir("Quelle carte souhaitez vous défausser ? ", null, listeChoix, false);
                 joueur.defausserCarte(joueur.getMain().getCarte(input));
+                listeChoix.remove(new Bouton(input));
             }
         }
     }

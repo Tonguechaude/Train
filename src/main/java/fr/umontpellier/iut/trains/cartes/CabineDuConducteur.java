@@ -1,11 +1,6 @@
 package fr.umontpellier.iut.trains.cartes;
 
-import fr.umontpellier.iut.trains.Bouton;
 import fr.umontpellier.iut.trains.Joueur;
-
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CabineDuConducteur extends CarteRouge {

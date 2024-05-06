@@ -9,7 +9,6 @@ public class TrainDeMarchandises extends CarteDoubleType {
     public TrainDeMarchandises() {
         super("Train de marchandises",4,1, "Train", "Action");
     }
-    //A TESTER : si le joueur passe directement
 
     @Override
     public void jouer(Joueur joueur)
@@ -27,9 +26,9 @@ public class TrainDeMarchandises extends CarteDoubleType {
 
         if(!choixPossibles.isEmpty())
         {
-            String instructions = "Veuillez choisir une carte FERRAILLE à retirer de votre main, ou passez pour terminer l'effet de la carte.";
+            String instructions = "Veuillez choisir une carte FERRAILLE à retirer de votre main, ou PASSEZ pour terminer l'effet de la carte.";
             String choix = joueur.choisir(instructions,choixPossibles,null,true);
-            while(!choixPossibles.isEmpty() && !choix.isEmpty())
+            while(!choix.isEmpty())
             {
                 choixPossibles.remove(choix);
                 joueur.removeFerraille(1);

@@ -52,7 +52,7 @@ public class BureauDuChefDeGare extends CarteRouge {
         }
         else
         {
-            joueur.log("Vous ne possédez pas de carte Action dans votre main");
+            joueur.log("Vous ne possédez pas de carte de type Action dans votre main");
         }
 
     }

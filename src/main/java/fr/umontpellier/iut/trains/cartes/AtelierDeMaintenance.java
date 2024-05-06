@@ -22,7 +22,7 @@ public class AtelierDeMaintenance extends CarteRouge {
         }
         if (choix.isEmpty()) //si aucune carte train en jeu, la carte ne fait rien
         {
-            joueur.getJeu().log("aucune carte TRAIN en jeu, vous recevez 1 d'argent");
+            joueur.getJeu().log("aucune carte de type TRAIN en jeu");
         }
         else
         {

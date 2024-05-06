@@ -9,7 +9,8 @@ import fr.umontpellier.iut.trains.plateau.TypeTerrain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gare extends CarteViolette {
+public class Gare extends CarteViolette
+{
     public Gare() {
         super("Gare", 3, 0);
     }
